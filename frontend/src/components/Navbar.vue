@@ -10,13 +10,19 @@
               <router-link class="text" to="/about">About us</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="text" to="/admin">Admin</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/store">Store</router-link>
+              <router-link class="text" to="/products">Products</router-link>
             </li>
             <li class="nav-item">
               <router-link class="text" to="/contact">Contact us</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="text" to="/signup">Signup</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="text" to="/login"><i class="bi bi-person-circle"></i></router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="text" to="/checkout"><i class="bi bi-cart2"></i></router-link>
             </li>
           </ul>
         </nav>
@@ -31,7 +37,7 @@
 
 <style scoped>
 nav.custom-container{
-    background: #ffffffa5;
+    background: #3a3a3aa5;
     border-radius: 50px;
     box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.4);
     position: -webkit-sticky;
