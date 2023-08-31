@@ -13,7 +13,7 @@
                   <p class="card-text">R{{ item.amount }}</p>
                   <div class="card-link-wrapper">
                     <a href="" class="btn btn-outline-light me-2">Buy Now</a>
-                    <button class="btn  btn-outline-light ">View More</button>
+                    <router-link class="btn  btn-outline-light" to="/singleproduct">View More</router-link>
                   </div>
                 </div>
               </div>
@@ -26,6 +26,8 @@
 
 <script>
 export default {
+
+  
   computed: {
     products() {
       return this.$store.state.products;
@@ -34,6 +36,7 @@ export default {
   mounted() {
     this.$store.dispatch("fetchBoards");
   },
+
   methods:{
       
     }

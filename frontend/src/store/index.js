@@ -7,13 +7,15 @@ const url = 'https://skateboard-ecom.onrender.com/'
 export default createStore({
   state: {
     products: null,
+
   },
   getters: {
   },
   mutations: {
     setProducts(state, data){
       state.products = data
-    }
+    },
+
   },
   actions: {
     async fetchBoards({commit}){
@@ -28,7 +30,9 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+
+
     },
 
   modules: {
