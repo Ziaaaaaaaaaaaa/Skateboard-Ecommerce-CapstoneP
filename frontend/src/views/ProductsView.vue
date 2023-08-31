@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <div class="heading">
-      <h1 class="heading-text text-white">Product Page</h1>
+      <div class="d-flex justify-content-center ">
+        <h1 class="heading-text text-white">Product Page</h1>
+      </div>
     </div>
         <div class="container">
           <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
@@ -43,12 +45,7 @@ export default {
 </script>
 
 <style scoped>
-.div-store {
-  padding: 4rem;
-  margin-inline: 1rem;
-  position: relative;
-  bottom: 9rem;
-}
+
 
 .text-center{
   border-top-left-radius: 50px;
@@ -59,27 +56,7 @@ export default {
   background-color: rgb(25, 25, 25);
   position: relative;
   padding-left: 10rem;
-  bottom: 4rem;
-}
-
-.custom-img {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-.custom-img:hover {
-  object-fit: contain;
-}
-
-.side-text {
-  font-size: 7rem;
-  color: white;
-  transform: rotate(-90deg);
-  position: fixed;
-  right: 73rem;
-  bottom: 15rem;
-  font-weight: 200;
-  z-index: 2;
+  bottom: 10rem;
 }
 
 .test {
@@ -97,17 +74,109 @@ export default {
   background-color: rgba(24, 24, 24, 0.58);
   position: relative;
   z-index: 1;
-  bottom: 32rem;
-  left: 27rem;
-  padding-inline: 2rem;
-  padding-block: 2rem;
-  margin-right: 51rem;
-
+  bottom: 26rem;
+  width: 35%;
+  
 }
 
 .heading-text{
-  font-size: 7rem;
+  font-size: 5rem;
 }
 
+.cards {
+  display: flex;
+  padding: 25px 0px;
+  list-style: none;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+  padding: 20px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  scroll-snap-align: start;
+  transition: all 0.2s;
+}
+
+.card:not(:last-child) {
+  margin-right: 10px;
+}
+
+/* .card:hover {
+  color: var(--white);
+  background: var(--red);
+} */
+
+.card .card-title {
+  font-size: 20px;
+}
+
+.card .card-content {
+  margin: 20px 0;
+  max-width: 85%;
+}
+
+.card .card-link-wrapper {
+  margin-top: auto;
+}
+
+.card .card-link {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: var(--red);
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.card:hover .card-link {
+  background: var(--darkred);
+}
+
+.cards::-webkit-scrollbar {
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.269);
+}
+
+.cards::-webkit-scrollbar-thumb,
+.cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+  background-color: white;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: var(--darkred);
+  background-color: white;
+}
+
+.cards::-webkit-scrollbar-track {
+  background: var(--thumb);
+}
+
+@media (min-width: 700px) {
+  .card {
+    flex-basis: calc(calc(100% / 3) - 20px);
+  }
+
+  .card:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .card {
+    flex-basis: calc(25% - 30px);
+  }
+
+  .card:not(:last-child) {
+    margin-right: 40px;
+  }
+}
 </style>
 

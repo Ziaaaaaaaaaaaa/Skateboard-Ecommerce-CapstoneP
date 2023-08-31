@@ -1,29 +1,26 @@
 <template>
-  <div class="home">
-    <div class="container">
+  <div class="home h-100">
       <div class="features">       
-        <div>
-          <h1 class="text-center text-white text-uppercase mb-5 pt-5">Featured Products</h1>
-        </div>
-        <div class=" d-flex justify-content-center">
-  
-          <div class="card" style="width: 18rem;" v-for="item in products" :key="item.prodID">
-            <img :src="item.prodUrl" class="w-100 test" alt="">
-            <div class="card-body">
-              <h5 class="card-title text-white">{{ item.prodName }}</h5>
-              <p class="card-text text-white">{{ item.category }}</p>
-              <p class="card-text text-white">{{ item.prodDesc }}</p>
-              <p class="card-text text-white">{{ item.prodUrl }}</p>
-              <div class="card-link-wrapper">
-                <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
-                <button class="btn  btn-outline-light ">View More</button>
+          <h1 class="text-center  text-uppercase mb-5 pt-5">Featured Products</h1>
+        <div class="container">
+          <div class="row">
+            <div class="col mb-5" v-for="item in products" :key="item.prodID">
+              <div class="card m-auto" style="width: 18rem;" >
+                <img :src="item.prodUrl" class="card-img-top" alt="">
+                <div class="card-body h-50">
+                  <h5 class="card-title text-white">{{ item.prodName }}</h5>
+                  <p class="card-text">{{ item.category }}</p>
+                  <p class="card-text">R{{ item.amount }}</p>
+                  <div class="card-link-wrapper">
+                    <a href="" class="btn btn-outline-light me-2">Buy Now</a>
+                    <button class="btn  btn-outline-light ">View More</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
-
   </div>
 </template>
 
@@ -48,8 +45,8 @@ export default {
     background-color: rgb(57, 57, 57);
   }
 
+
   .features{
-    margin-top: 20rem;
-    background-color: rgb(129, 129, 129);
-  }
+    margin-bottom: 10rem;
+    }
 </style>

@@ -1,32 +1,40 @@
 <template>
-    <div class="custom-container">
-        <nav class="custom-container">
-          <h1>SKATE<span>HUB</span></h1>
-          <ul>
-            <li class="nav-item">
-              <router-link class="text" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/about">About us</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/products">Products</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/contact">Contact us</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/signup">Signup</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/login"><i class="bi bi-person-circle"></i></router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="text" to="/checkout"><i class="bi bi-cart2"></i></router-link>
-            </li>
-          </ul>
+       <div>
+        <nav class="navbar navbar-expand-lg position-fixed w-100" style="z-index: 99999;">
+          <div class="container-fluid pt-4 pb-4">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/">Home</router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/about">About us</router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/products">Products</router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/contact">Contact us</router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/signup">Signup</router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/login"><i class="bi bi-person-circle"></i></router-link>
+                </li>
+                <li class="nav-item px-2">
+                  <router-link class="text" to="/checkout"><i class="bi bi-cart2"></i></router-link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
-    </div>
+        <img src="https://i.postimg.cc/Y0g0X3Vb/New-Project-2-1.png" class="w-100 home-img"  alt="">
+      </div>
 </template>
 
 <script>
@@ -36,59 +44,8 @@
 </script>
 
 <style scoped>
-nav.custom-container{
-    background: #3a3a3aa5;
-    border-radius: 50px;
-    box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.4);
-    position: -webkit-sticky;
-    position: fixed;
-    top: 0;
-    
-  }
-  nav ul .nav-item{
-    list-style: none;
-    display: inline-block;
-    padding-right: 12px;
-    margin: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #d6d6d6;
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
-    transition: color 0.5s;
-    /* display: flex; */
-    align-items: center;
-    /* justify-content: center; */
-    margin-top: 10px;
-    margin-bottom: 1px;
-    margin-right: 1.3;
-  }
-  nav ul .nav-item::after{
-    content: '';
-    background: #a1a1a188;
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    position: absolute;
-    top: 100%;
-    left: 41%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    opacity: 0;
-    transition: top 0.5s, opacity 0.5s;
-    margin-right: 1rem;
-  }
-  nav ul .nav-item:hover{
-    color: #fff;
-    cursor: pointer;
-    align-items: center;
-    /* margin-right: 1rem; */
-  }
-  nav ul .nav-item:hover::after{
-    top: 50%;
-    opacity: 1;
-    align-items: center;
-    /* margin-right: 1rem; */
+nav {
+    background: #3a393989;
+   
   }
 </style>
