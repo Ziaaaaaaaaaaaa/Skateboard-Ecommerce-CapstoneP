@@ -23,7 +23,7 @@ fetchProducts(req, res){
   
   // get single product
   fetchProduct(req, res){
-    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount 
+    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl 
        FROM Products
        WHERE prodID = ?`;
     const { prodID } = req.params;
