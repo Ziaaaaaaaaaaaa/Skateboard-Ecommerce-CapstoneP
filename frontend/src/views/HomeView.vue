@@ -13,7 +13,7 @@
               <h5 class="card-title text-white">{{ item.prodName }}</h5>
               <p class="card-text text-white">{{ item.category }}</p>
               <p class="card-text text-white">{{ item.prodDesc }}</p>
-              <p class="card-text text-white">{{ item.Amount }}</p>
+              <p class="card-text text-white">{{ item.prodUrl }}</p>
               <div class="card-link-wrapper">
                 <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
                 <button class="btn  btn-outline-light ">View More</button>
