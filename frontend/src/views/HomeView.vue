@@ -29,7 +29,7 @@ export default {
 
   
   computed: {
-  products() {
+    products() {
     return this.$store.state.products;
   },
   selectedProduct() {
@@ -37,17 +37,10 @@ export default {
   },
 },
 mounted() {
-  this.fetchBoards();
-  this.fetchProduct(); // You may need to pass a prodID as an argument here.
+  this.$store.dispatch('fetchBoards');// You may need to pass a prodID as an argument here.
+  this.$store.dispatch('fetchProduct', this.prodID);// You may need to pass a prodID as an argument here.
 },
-methods: {
-  fetchBoards() {
-    this.$store.dispatch('fetchBoards');
-  },
-  fetchProduct(prodID) { // Define the prodID parameter here.
-    this.$store.dispatch('fetchProduct', prodID); // Use the correct action name.
-  },
-},
+
 
 };
 </script>

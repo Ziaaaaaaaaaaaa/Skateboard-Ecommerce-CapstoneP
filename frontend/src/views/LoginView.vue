@@ -1,6 +1,20 @@
 <template>
-    <div>
+    <div class="custom-container container bg-dark w- h-100 pt-5 pb-5">
+        <h1 class="form-heading">Login</h1>
+        <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="d-flex justify-content-center">
 
+                <button type="submit" class="btn  btn-outline-light">Login</button>
+            </div>
+          </form>
     </div>
 </template>
 
@@ -11,5 +25,19 @@
 </script>
 
 <style scoped>
+.form-heading{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.custom-container{
+    border-radius: 50px;
+    position: relative;
+    bottom: 5rem;
+    min-width: 16rem;
+    max-width: 40%;
+}
+
 
 </style>
