@@ -9,7 +9,7 @@ router.get('/products', (req, res) =>{
     products.fetchProducts(req, res)
 })
 
-router.get('/product/:skateID', (req, res) =>{
+router.get('/product/:prodID', (req, res) =>{
     products.fetchProduct(req, res)
 })
 
