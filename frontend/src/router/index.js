@@ -33,8 +33,8 @@ const routes = [
     name: 'checkout',
     component: ()=> import('../views/CheckoutView.vue')  },
     {
-      path: '/singleproduct/:prodID',
-      name: 'singleproduct',
+      path: '/product/:prodID',
+      name: 'product',
       component: ()=> import('../views/SingleproductsView.vue')
     }
 ]

@@ -7,6 +7,7 @@ const url = 'https://skateboard-ecom.onrender.com/'
 export default createStore({
   state: {
     products: null,
+    selectedProduct: null
 
   },
   getters: {
@@ -15,6 +16,9 @@ export default createStore({
     setProducts(state, data){
       state.products = data
     },
+    setSelectedProd(state, board){
+      state.selectedProduct = board
+    }
 
   },
   actions: {
@@ -26,7 +30,7 @@ export default createStore({
     async fetchProduct({commit}, prodID){
       try {
         const response = await axios.get(`${url}product/${prodID}`)
-        commit('setSelectedProduct', response.data.result[0])
+        commit('setSelectedProd', response.data.result[0])
       } catch (error) {
         console.error(error);
       }

@@ -1,17 +1,33 @@
 <template>
     <div>
-
-        <div class="card mb-3" style="max-width: 540px;"  v-for="item in products" :key="item.prodID"></div>
+      <!-- <div class="row" style="margin-top: 3rem" >
+        <div class="car col-12 col-sm-6 col-md-4 p-2" >
+          <img
+            :src="$route.query.img" :alt="$route.query.img"
+            style="width: 9rem; height: 9rem"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <br />
+            <h5 class="card-title">{{ $route.query.prodName }}</h5>
+            <h5 class="card-title">{{ $route.query.Category }}</h5>
+            <br />
+            <p class="card-text">R {{ $route.query.amount }}</p>
+            <p class="card-text">Qty: {{ $route.query.quantity }}</p>
+          </div>
+        </div>
+      </div> -->
+        <div class="card mb-3" style="max-width: 540px;"></div>
             <div class="row g-0">
               <div class="col-md-4">
-                <img :src="item.prodUrl" class="card-img-top" alt="">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title text-white">{{ item.prodName }}</h5>
-                    <p class="card-text">{{ item.category }}</p>
-                    <p class="card-text">R{{ item.amount }}</p>
-                    <p class="card-text">{{ item.prodDesc }}</p>
+                  <img :src="selectedProduct.prodUrl" class="card-img-top" alt="">
+                    <h5 class="card-title text-white">{{ selectedProduct.prodName }}</h5>
+                    <p class="card-text">{{ selectedProduct.category }}</p>
+                    <p class="card-text">R{{ selectedProduct.amount }}</p>
+                    <p class="card-text">{{ selectedProduct.prodDesc }}</p>
                 </div>
               </div>
             </div>
@@ -21,18 +37,22 @@
 
 <script>
     export default {
-        computed: {
-    products() {
-      return this.$store.state.products;
+      computed: {
+      selectedProduct() {
+        return this.$store.state.selectedProduct;
+      },
+    },
+    created() {
+  const prodID = this.$route.params.prodID;
+  this.$store.dispatch('fetchProduct', prodID);
+},
+    methods:{
+      fetchProduct(prodID){
+        this.$store.dispatch('fetchProduct', prodID)
+      }
     }
-  },
-  mounted() {
-    this.$store.dispatch("fetchProduct");
-  },
-  methods:{
-      
-    }
-    }
+
+  };
 </script>
 
 <style scoped>

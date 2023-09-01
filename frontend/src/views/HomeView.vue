@@ -13,7 +13,7 @@
                   <p class="card-text">R{{ item.amount }}</p>
                   <div class="card-link-wrapper">
                     <a href="" class="btn btn-outline-light me-2">Buy Now</a>
-                    <router-link class="btn  btn-outline-light" to="/singleproduct">View More</router-link>
+                    <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
                   </div>
                 </div>
               </div>
@@ -29,17 +29,26 @@ export default {
 
   
   computed: {
-    products() {
-      return this.$store.state.products;
-    }
+  products() {
+    return this.$store.state.products;
   },
-  mounted() {
-    this.$store.dispatch("fetchBoards");
+  selectedProduct() {
+    return this.$store.state.selectedProduct;
   },
+},
+mounted() {
+  this.fetchBoards();
+  this.fetchProduct(); // You may need to pass a prodID as an argument here.
+},
+methods: {
+  fetchBoards() {
+    this.$store.dispatch('fetchBoards');
+  },
+  fetchProduct(prodID) { // Define the prodID parameter here.
+    this.$store.dispatch('fetchProduct', prodID); // Use the correct action name.
+  },
+},
 
-  methods:{
-      
-    }
 };
 </script>
 
