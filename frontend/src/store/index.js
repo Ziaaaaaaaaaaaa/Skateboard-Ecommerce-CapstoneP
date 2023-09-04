@@ -8,7 +8,6 @@ export default createStore({
   state: {
     products: null,
     selectedProduct: null
-
   },
   getters: {
   },
@@ -19,7 +18,6 @@ export default createStore({
     setSelectedProd(state, board){
       state.selectedProduct = board
     }
-
   },
   actions: {
     async fetchBoards({commit}){

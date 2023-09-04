@@ -13,6 +13,11 @@
     components:{
     Navbar,
     Footer
+  },
+  computed: {
+    loadingStatus () {
+      return this.$store.getters.loadingStatus
+    }
   }
   }
 </script>

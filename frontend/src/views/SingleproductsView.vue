@@ -1,28 +1,26 @@
 <template>
   <div class="container">
-    <div v-if="selectedProduct">
-      <!-- <h1>{{ selectedProduct.prodName }}</h1>
-      <img :src="selectedProduct.prodUrl" style="width: 18rem" alt=""> -->
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4">
+      <div class="container text-center pt-5 pb-5" v-if="selectedProduct">
+        <div class="row">
+          <div class="col">
             <img :src="selectedProduct.prodUrl" class=" rounded-start" style="width: 18rem" alt="">
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title text-black">{{ selectedProduct.prodName }}</h5>
-              <p class="card-text text-black">{{ selectedProduct.prodDesc }}</p>
-            </div>
+          <div class="col">
+            <h5 class="card-title text-white ">{{ selectedProduct.prodName }}</h5>
+            <p class="card-text-1 text-white">Category: {{ selectedProduct.category }}</p>
+            <p class="card-text text-white">Quantity: {{ selectedProduct.quantity }}</p>
+            <p class="card-text text-white">Price: R{{ selectedProduct.amount }}</p>
+            <p class="card-text text-white">Description: {{ selectedProduct.prodDesc }}</p>
           </div>
         </div>
       </div>
 
+      <div v-else class="d-flex justify-content-center align-content-center">
+        <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
+      </div>
       
       
     </div>
-    <div v-else>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -50,4 +48,23 @@ mounted(){
 
 <style scoped>
 
+.spinner{
+  width: 9rem;
+}
+.container{
+  background-color: rgb(52, 52, 52);
+  border-radius: 50px;
+}
+
+h5{
+  text-align: left;
+  font-size: 3rem;
+}
+p{
+  text-align: left;
+}
+
+p.card-text-1{
+  font-size: 1.5rem;
+}
 </style>

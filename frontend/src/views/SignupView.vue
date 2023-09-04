@@ -1,5 +1,5 @@
 <template>
-    <div class="custom-container container bg-dark w- h-100 pt-5 pb-5">
+    <div class="custom-container container h-100 pt-5 pb-5">
         <h1 class="form-heading">Sign Up</h1>
         <form>
             <div class="mb-3">
@@ -36,6 +36,8 @@
 }
 
 .custom-container{
+  background-color: rgb(52, 52, 52);
+
     border-radius: 50px;
     position: relative;
     bottom: 5rem;

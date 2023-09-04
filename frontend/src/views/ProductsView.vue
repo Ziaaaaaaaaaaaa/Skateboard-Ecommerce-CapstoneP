@@ -10,16 +10,25 @@
           <h2 class="text-white">skateboards</h2>
           <ul class="cards">
             <li class="card" v-for="item in products" :key="item.prodID">
-              <div>
-                <img :src="item.prodUrl" class="w-100 test" alt="">
-                <p class="text-white">{{ item.prodName }}</p>
-                <div class="card-content">
-                  <p class="text-white">{{ item.category }}</p>
+              <div v-if="products">
+                <div>
+                  <img :src="item.prodUrl" class="card-img-top" alt="">
+                  <div class="card-body"></div>
+                  <p class="text-white">{{ item.prodName }}</p>
+                  <div class="card-content">
+                    <p class="text-white">{{ item.category }}</p>
+                  </div>
+                  <div class="card-content">
+                    <p class="text-white">R{{ item.amount }}</p>
+                  </div>
+                </div>
+                <div class="card-link-wrapper">
+                  <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
+                  <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
                 </div>
               </div>
-              <div class="card-link-wrapper">
-                <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
-                <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
+              <div v-else class="d-flex justify-content-center align-content-center">
+                <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
               </div>
             </li>
           </ul>
@@ -57,21 +66,22 @@ this.$store.dispatch('fetchProduct', this.prodID);// You may need to pass a prod
 
 }
 
+  .card{
+    background-color: rgb(20, 20, 20) !important
+  }
 .container{
-  background-color: rgb(25, 25, 25);
+  background-color: rgb(52, 52, 52);
   position: relative;
   padding-left: 10rem;
   bottom: 10rem;
+  border-radius: 50px;
 }
 
-.test {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
+
 
 .card{
   background-color: rgb(79, 79, 79);
-  width: 18rem;
+
 }
 
 .heading{
