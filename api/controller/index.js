@@ -17,11 +17,11 @@ router.post('/products', bodyParser.json(), (req, res) =>{
     products.addProduct(req, res)
 })
 
-router.patch('/product/:skateID', bodyParser.json(), (req, res) =>{
+router.patch('/product/:prodID', bodyParser.json(), (req, res) =>{
     products.updateProduct(req, res)
 })
 
-router.delete('/product/:skateID', (req, res) =>{
+router.delete('/product/:prodID', (req, res) =>{
     products.deleteProduct(req, res)
 })
 
