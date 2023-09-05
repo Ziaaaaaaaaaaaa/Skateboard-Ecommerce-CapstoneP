@@ -1,8 +1,10 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import useCookies from 'vue3-usecookies'
 
 const url = 'https://skateboard-ecom.onrender.com/'
 
+const { cookies } = useCookies();
 
 export default createStore({
   state: {
@@ -17,7 +19,7 @@ export default createStore({
     },
     setSelectedProd(state, board){
       state.selectedProduct = board
-    }
+    },
   },
   actions: {
     async fetchBoards({commit}){
