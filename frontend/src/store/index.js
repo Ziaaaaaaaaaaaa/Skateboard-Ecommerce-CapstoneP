@@ -1,15 +1,25 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import useCookies from 'vue3-usecookies'
+import sweet from 'sweetalert'
+
 
 const url = 'https://skateboard-ecom.onrender.com/'
+
+const instance = axios.create({
+  baseURL: 'https://skateboard-ecom.onrender.com/users',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
 
 const { cookies } = useCookies();
 
 export default createStore({
   state: {
     products: null,
-    selectedProduct: null
+    selectedProduct: null,
+    user: null
   },
   getters: {
   },
@@ -20,6 +30,9 @@ export default createStore({
     setSelectedProd(state, board){
       state.selectedProduct = board
     },
+    setUser(state, user){
+      state.user = user
+    }
   },
   actions: {
     async fetchBoards({commit}){
@@ -36,6 +49,16 @@ export default createStore({
       }
     },
 
+    async register({commit},userData){
+      try{
+        const response = await axios.post('https://skateboard-ecom.onrender.com/users', userData);
+        console.log(response.data);
+        commit('setUser',response.data.user);
+     }
+     catch (error){
+      console.error(error);
+     }
+    }
 
     },
 
