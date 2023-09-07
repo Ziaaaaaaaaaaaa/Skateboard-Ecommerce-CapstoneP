@@ -24,6 +24,9 @@
                   <router-link class="text" to="/signup">Signup</router-link>
                 </li>
                 <li class="nav-item px-2">
+                  <router-link class="text" to="/admin">Admin</router-link>
+                </li>
+                <li class="nav-item px-2">
                   <router-link class="text" to="/login"><i class="bi bi-person-circle"></i></router-link>
                 </li>
                 <li class="nav-item px-2">

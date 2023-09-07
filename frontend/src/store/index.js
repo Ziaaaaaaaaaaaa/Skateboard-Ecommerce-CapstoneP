@@ -1,9 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import useCookies from 'vue3-usecookies'
-import sweet from 'sweetalert'
-
-
+// import sweet from 'sweetalert'
 const url = 'https://skateboard-ecom.onrender.com/'
 
 const instance = axios.create({
@@ -18,8 +16,10 @@ const { cookies } = useCookies();
 export default createStore({
   state: {
     products: null,
+    product: null,
     selectedProduct: null,
-    user: null
+    users: null,
+    addProduct: null
   },
   getters: {
   },
@@ -27,11 +27,20 @@ export default createStore({
     setProducts(state, data){
       state.products = data
     },
+    setProduct(state, data){
+      state.product = data
+    },
     setSelectedProd(state, board){
       state.selectedProduct = board
     },
-    setUser(state, user){
-      state.user = user
+    setUsers(state, users){
+      state.users = users
+    },
+    setAddProd(state, data){
+      state.addProduct = data
+    },
+    setDeleteProd(state, data){
+      state.products = data
     }
   },
   actions: {
@@ -49,6 +58,21 @@ export default createStore({
       }
     },
 
+    async addProduct({commit}, productdata) {
+      try {
+        const response = await axios.post(`${url}products`, productdata)
+      commit('setAddProd', response.data)
+      console.log("success");
+      } catch (e) {
+        console.log('Error adding product');
+      }
+    },
+    async deleteProduct({ commit }, product_id) {
+      const response = await axios.delete(`${apiUrl}products/${product_id}`)
+      location.reload()
+      commit('setDeleteProd', response)
+    },
+
     async register({commit},userData){
       try{
         const response = await axios.post('https://skateboard-ecom.onrender.com/users', userData);
@@ -59,7 +83,6 @@ export default createStore({
       console.error(error);
      }
     }
-
     },
 
   modules: {
