@@ -1,6 +1,6 @@
 const { express, router } = require('./controller')
 const app = express()
-const port = process.env.PORT || 1738
+const port = process.env.PORT || 3000
 const path = require('path')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
