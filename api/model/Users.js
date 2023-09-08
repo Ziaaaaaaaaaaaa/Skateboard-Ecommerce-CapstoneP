@@ -5,7 +5,7 @@ const { createToken } = require('../middleware/AuthenticateUser')
 class Users{
     fetchUsers(req, res){
         const query = 
-        `SELECT userID, firstName, lastName, userAge, gender, userRole, emailAdd, userPass, profileUrl
+        `SELECT userID, firstName, lastName, gender,userDOB, userRole, emailAdd, userPass, profileUrl
          FROM Users`
     
          db.query(query, (err, results) =>{
@@ -26,7 +26,7 @@ class Users{
     
     fetchUser(req, res){
         const query = 
-        `SELECT userID, firstName, lastName, userAge, gender, userRole, emailAdd, userPass, profileUrl
+        `SELECT userID, firstName, lastName, gender,userDOB, userRole, emailAdd, userPass, profileUrl
          FROM Users
          WHERE userID = ?`
     
@@ -80,6 +80,38 @@ class Users{
             }
         })
     }
+
+    updateUser(req, res) {
+    const data = req.body;
+    if (data.userPass) {
+      data.userPass = hashSync(data.userPass, 15);
+    }
+    const query = `
+        UPDATE Users
+        SET ?
+        WHERE userID = ?
+        `;
+    db.query(query, [req.body, req.params.id], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "successful update.",
+      });
+    });
+  }
+  deleteUser(req, res) {
+    const query = `
+        DELETE FROM Users
+        WHERE userID = ${req.params.id}
+        `;
+    db.query(query, (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "The user has been deleted.",
+      });
+    });
+  }
     
 }
 

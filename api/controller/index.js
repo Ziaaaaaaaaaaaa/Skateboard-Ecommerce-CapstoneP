@@ -40,6 +40,14 @@ router.post('/users', bodyParser.json(), (req, res) =>{
     users.registerUser(req, res)
 })
 
+
+router.patch('/user/:userID', bodyParser.json(), (req, res) =>{
+    users.updateUser(req, res)
+})
+
+router.delete('/user/:userID', (req, res) =>{
+    users.deleteUser(req, res)
+})
 // ==================== FILTER ====================== //
 
 router.get('/sortprob', (req, res) =>{
