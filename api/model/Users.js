@@ -80,6 +80,38 @@ class Users{
             }
         })
     }
+
+    updateUser(req, res) {
+    const data = req.body;
+    if (data.userPass) {
+      data.userPass = hashSync(data.userPass, 15);
+    }
+    const query = `
+        UPDATE users
+        SET ?
+        WHERE userID = ?
+        `;
+    db.query(query, [req.body, req.params.id], (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "successful update.",
+      });
+    });
+  }
+  deleteUser(req, res) {
+    const query = `
+        DELETE FROM users
+        WHERE userID = ${req.params.id}
+        `;
+    db.query(query, (err) => {
+      if (err) throw err;
+      res.json({
+        status: res.statusCode,
+        msg: "The user has been deleted.",
+      });
+    });
+  }
     
 }
 
