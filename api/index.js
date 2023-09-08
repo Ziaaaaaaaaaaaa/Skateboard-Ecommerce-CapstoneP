@@ -4,6 +4,7 @@ const port = process.env.PORT || 1738
 const path = require('path')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const errorHandling = require('./middleware/ErrorHandling')
 
 app.use(express.static('./static'), express.urlencoded({ extended: false }),cors(), cookieParser(), router)
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 app.get('^/$|/skate', (req, res) =>{
     res.sendFile(path.resolve(__dirname, './static/html/index.html'))
 })
+
+app.use(errorHandling)
 
 app.listen(port, ()=>{
     console.log(`You are using port http://localhost:${port}`);

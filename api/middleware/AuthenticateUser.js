@@ -1,17 +1,29 @@
+const {sign, vertify} = require('jsonwebtoken')
 require('dotenv').config()
-const { sign } = require('jsonwebtoken');
-
 function createToken(user){
     return sign({
-        userPass: user.userPass,
-        emailAdd: user.emailAdd
-    }, 
-        process.env.SECRET_KEY,
+        emailAdd: user.emailAdd,
+        userPass: user.userPass
+    },
+    process.env.SECRET_KEY,
     {
         expiresIn: '1h'
     })
 }
-
+function vertifyAToken(req, res, next){
+    try{
+        console.log("Get token from req.headers['authorization']");
+        const token = req.headers["authorization"]
+        console.log(token);
+        next()
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: e.message
+        })
+    }
+}
 module.exports = {
-    createToken
+    createToken,
+    vertifyAToken
 }

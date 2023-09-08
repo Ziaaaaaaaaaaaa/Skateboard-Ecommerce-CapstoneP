@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express()
+const {verifyAToken} = require('../middleware/AuthenticateUser')
 const { products, users } = require('../model')
 const bodyParser = require('body-parser')
 
