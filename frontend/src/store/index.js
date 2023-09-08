@@ -19,7 +19,9 @@ export default createStore({
     product: null,
     selectedProduct: null,
     users: null,
-    addProduct: null
+    addProduct: null,
+    msg:null
+    
   },
   getters: {
   },
@@ -36,11 +38,20 @@ export default createStore({
     setUsers(state, users){
       state.users = users
     },
+    setUser(state,user){
+      state.users= user
+    },
     setAddProd(state, data){
       state.addProduct = data
     },
     setDeleteProd(state, data){
       state.products = data
+    },
+    setDeleteUser(state, data){
+      state.users = data
+    },
+    setMsg(state,msg){
+      state.msg = msg;
     }
   },
   actions: {
@@ -48,7 +59,11 @@ export default createStore({
       const fetchedData = await axios.get(`${url}products`)
       commit('setProducts', fetchedData.data.results)
     },
-  
+    async fetchUsers({commit}){
+      const fetchUsers = await axios.get(`${url}users`)
+      commit('setUsers', fetchUsers.data.results)
+    },
+   
     async fetchProduct({commit}, prodID){
       try {
         const response = await axios.get(`${url}product/${prodID}`)
@@ -57,6 +72,7 @@ export default createStore({
         console.error(error);
       }
     },
+    
 
     async addProduct({commit}, productdata) {
       try {
@@ -67,10 +83,26 @@ export default createStore({
         console.log('Error adding product');
       }
     },
-    async deleteProduct({ commit }, product_id) {
-      const response = await axios.delete(`${apiUrl}products/${product_id}`)
+    async deleteProduct(context, prodID) {
+      const response = await axios.delete(`${url}product/${prodID}`)
       location.reload()
-      commit('setDeleteProd', response)
+      context.dispatch('setProducts')
+    },
+    
+    // async deleteUser(context, userID) {
+    //   const response = await axios.delete(`${url}user/${userID}`)
+    //   location.reload()
+    //   context.dispatch('setProducts')
+    // },
+   
+   
+    async deleteUser(context, userID) {
+      try {
+        const { data } = await axios.delete(`${url}user/${userID}`)
+        context.commit("setDeleteUser");
+      } catch (e) {
+        context.commit("setMsg", "An error occurred.");
+      }
     },
 
     async register({commit},userData){

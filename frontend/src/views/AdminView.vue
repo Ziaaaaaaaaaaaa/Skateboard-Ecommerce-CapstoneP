@@ -42,23 +42,21 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Profile Image</th>
-                <th>Cell Number</th>
                 <th>User Role</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users" :key="user.user_id">
-                <td>{{ user.user_id }}</td>
+              <tr v-for="user in Users" :key="user.userID">
+                <td>{{ user.userID }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td><img :src="user.profile_image_url" :alt="user.firstName" style="max-width: 100px;"></td>
-                <td>0{{ user.cellNum }}</td>
+                <td>{{ user.emailAdd }}</td>
+                <td><img :src="user.rofileUrl" :alt="user.firstName" style="max-width: 100px;"></td>
                 <td>{{ user.userRole }}</td>
                 <td><button @click="editUser(user)" class="btn btn-dark">Edit</button></td>
-                <td><button @click="deleteUser(user.user_id)" class="btn btn-dark">Delete</button></td>
+                <td><button @click="deleteUser(user.userID)" class="btn btn-dark">Delete</button></td>
               </tr>
             </tbody>
 
@@ -76,27 +74,28 @@ import AddProduct from "@/components/AppProduct.vue";
 
         methods: {
             
-    //   confirmDeleteU(userID) {
-    //     if (confirm("Please confirm")) {
-    //       try {
-    //         this.$store.dispatch("deleteUser", userID);
-    //       } catch (e) {
-    //         console.log("Error deleting user:");
-    //       }
-    //     }
-    //   },
-    //   confirmDelete(prodID) {
-    //     if (confirm("Please confirm")) {
-    //       try {
-    //         this.$store.dispatch("setDeleteProd", prodID);
-    //       } catch (e) {
-    //         console.log("Error deleting parking:");
-    //       }
-    //     }
-    //   },
+          deleteUser(userID) {
+        if (confirm("Please confirm")) {
+          try {
+            this.$store.dispatch("deleteUser", userID);
+          } catch (e) {
+            console.log("Error deleting user:");
+          }
+        }
+      },
+      deleteProduct(prodID) {
+        if (confirm("Please confirm")) {
+          try {
+            this.$store.dispatch("deleteProduct", prodID);
+          } catch (e) {
+            console.log("Error deleting product");
+           
+          }
+        }
+      },
     },
         computed:{
-            users() {
+            Users() {
                 return this.$store.state.users
             },
             products() {
@@ -105,7 +104,7 @@ import AddProduct from "@/components/AppProduct.vue";
         },
         mounted() {
             this.$store.dispatch('fetchBoards')
-            this.$store.dispatch("FetchUsers")
+            this.$store.dispatch("fetchUsers")
         }
     }
 
