@@ -9,12 +9,12 @@ const errorHandling = require('./middleware/ErrorHandling')
 app.use(express.static('./static'), express.urlencoded({ extended: false }),cors(), cookieParser(), router)
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://skateboard-ecom.onrender.com");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "*");
-    res.header("Access-Control-Request-Methods", "*");
+    res.header("Access-Control-Request-Methods", "GET, POST, PUT, DELETE");
     res.header("Access-Control-Allow-Headers", "*");
-    res.header("Access-Control-Expose-Headers", "Authorization");
+    res.header("Access-Control-Expose-Headers", "Content-Type, Authorization");
     next();
   });
 
