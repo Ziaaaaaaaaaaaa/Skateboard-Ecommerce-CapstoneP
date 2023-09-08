@@ -98,7 +98,7 @@ export default createStore({
    
     async deleteUser(context, userID) {
       try {
-        const { data } = await axios.delete(`${url}user/${userID}`)
+        const { data } = await axios.delete(`${url}users/${userID}`)
         context.commit("setDeleteUser");
       } catch (e) {
         context.commit("setMsg", "An error occurred.");
