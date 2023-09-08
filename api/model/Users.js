@@ -87,7 +87,7 @@ class Users{
       data.userPass = hashSync(data.userPass, 15);
     }
     const query = `
-        UPDATE users
+        UPDATE Users
         SET ?
         WHERE userID = ?
         `;
@@ -101,7 +101,7 @@ class Users{
   }
   deleteUser(req, res) {
     const query = `
-        DELETE FROM users
+        DELETE FROM Users
         WHERE userID = ${req.params.id}
         `;
     db.query(query, (err) => {
