@@ -40,11 +40,11 @@ router.post('/users', bodyParser.json(), (req, res) =>{
 })
 
 
-router.patch('/users/:userID', bodyParser.json(), (req, res) =>{
+router.patch('/user/:userID', bodyParser.json(), (req, res) =>{
     users.updateUser(req, res)
 })
 
-router.delete('/users/:userID', (req, res) =>{
+router.delete('/user/:userID', (req, res) =>{
     users.deleteUser(req, res)
 })
 // ==================== FILTER ====================== //
