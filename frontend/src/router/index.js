@@ -1,10 +1,19 @@
+import HomeViewVue from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: ()=> import('../views/HomeView.vue')  },
+    component: HomeViewVue,
+    beforeEnter(){
+      if (!cookies.get('ActualUse')) {
+        router.push({name: 'register'})
+    }
+    }
+  },
   {
     path: '/about',
     name: 'about',

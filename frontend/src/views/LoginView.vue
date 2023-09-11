@@ -1,14 +1,14 @@
 <template>
     <div class="custom-container container h-100 pt-5 pb-5">
         <h1 class="form-heading">Login</h1>
-        <form>
+        <form @submit.prevent="login">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1">
+              <input type="email" v-model="payload.emailAdd" class="form-control" id="exampleInputEmail1">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" v-model="payload.userPass" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="d-flex justify-content-center">
 
@@ -19,8 +19,33 @@
 </template>
 
 <script>
+import { useCookies } from "vue3-usecookies"
+const {cookies} = useCookies
     export default {
-        
+        data() {
+            return {
+                payload: {
+                    emailAdd: "",
+                    userPass: "",
+                },
+            };
+        },
+        computed: {
+            user() {
+                return this.$store.state.user;
+            },
+        },
+        methods: {
+            login() {
+                this.$store.dispatch('login', this.payload)
+            }
+        },
+        beforeCreate() {
+            this.$store.dispatch('fetchUser')
+        },
+        mounted() {
+            console.log(cookies.get('ActualUser'));
+        }
     }
 </script>
 

@@ -142,6 +142,52 @@ export default createStore({
     //   }
     // },
 
+    async login(context, payload) {
+      try {
+        const { msg, token, result } = (
+          await axios.post(`${dataUrl}users`,payload)
+        ).data;
+        if (result) {
+          context.commit("setUser",{result, msg });
+          cookies.set("ActualUser",{ msg, token, result});
+          Authenticate.applyToken(token);
+          sweetAlert({
+            title: msg,
+            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
+            icon: "success",
+            timer: 2000,
+          });
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error has occured");
+      }
+    },
+
+    async addUser(context, payload){
+      try{
+        const { msg } = (await axios.post(`${dataUrl}register`, payload)).data;
+        if (msg) {
+          sweetAlert({
+            title: "Registration",
+            text: msg,
+            icon: "success",
+            timer: 2000,
+          });
+          context.dispatch("fetchUsers");
+          router.push({ name: "login"});
+        } else {
+          sweetAlert({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 2000,
+          })
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error has occured");
+      }
+    },
+    },
   modules: {
   }
-}})
+})
