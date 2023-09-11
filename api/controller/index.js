@@ -36,7 +36,7 @@ router.get('/user/:userID', (req, res) =>{
     users.fetchUser(req, res)
 })
 
-router.post('/users', bodyParser.json(), (req, res) =>{
+router.post('/register', bodyParser.json(), (req, res) =>{
     users.registerUser(req, res)
 })
 
