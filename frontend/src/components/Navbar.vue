@@ -32,6 +32,9 @@
                 <li class="nav-item px-2">
                   <router-link class="text" to="/checkout"><i class="bi bi-cart2"></i></router-link>
                 </li>
+                <li class="nav-item px-2">
+                  <button class="text btn" @click="logout"><i class="bi bi-box-arrow-left"></i></button>
+                </li>
               </ul>
             </div>
           </div>
@@ -54,6 +57,9 @@ const {cookies} = useCookies();
           },
           isAdmin() {
             return this.result?.userRole?.toLowerCase() === "admin"
+          },
+          logout(){
+            cookies.remove('ActualUser')
           }
         }
     };
@@ -62,6 +68,6 @@ const {cookies} = useCookies();
 <style scoped>
 nav {
     background: #3a393989;
-   
+    z-index: 99999;
   }
 </style>

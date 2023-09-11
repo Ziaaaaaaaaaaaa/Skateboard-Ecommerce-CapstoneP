@@ -1,125 +1,98 @@
 <template>
-  <div>
+  <div class="custom-container container h-100 pt-5 pb-5">
+      <h1 class="form-heading">Sign Up</h1>
       <form @submit.prevent="register">
-        <div class="mb-3">
-          <label for="exampleInputfirstName1" class="form-label text-black">ID</label>
-            <input
-              type="firstName"
-              class="form-control"
-              id="exampleInputfirstName1"
-              aria-describedby="emailHelp"
-              v-model="payload.userID"
-              required
-            />
-            <label for="exampleInputfirstName1" class="form-label text-black">firstName</label>
-            <input
-              type="firstName"
-              class="form-control"
-              id="exampleInputfirstName1"
-              aria-describedby="emailHelp"
-              v-model="payload.firstName"
-              required
-            />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputlastName1" class="form-label text-black">lastName</label>
-          <input
-            type="lastName"
-            class="form-control"
-            id="exampleInputlastName1"
-            aria-describedby="emailHelp"
-            v-model="payload.lastName"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputuserAge1" class="form-label text-black">userDOB</label>
-          <input
-            type="userAge"
-            class="form-control"
-            id="exampleInputuserAge1"
-            aria-describedby="emailHelp"
-            v-model="payload.userDOB"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputgender1" class="form-label text-black">gender</label>
-          <input
-            type="gender"
-            class="form-control"
-            id="exampleInputgender1"
-            aria-describedby="emailHelp"
-            v-model="payload.gender"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label text-black">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            v-model="payload.emailAdd"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label text-black">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            v-model="payload.userPass"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputuserProfile1" class="form-label text-black">profileLUrl</label>
-          <input
-            type="userProfile"
-            class="form-control"
-            id="exampleInputuserProfile1"
-            v-model="payload.profileUrl"
-            required
-          />
-        </div>
-        <button type="submit" class="btn">Register</button>
-      </form>
-    </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Full name</label>
+            <input type="firstname" v-model="payload.firstName" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Last name</label>
+            <input type="lastname" v-model="payload.lastName" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Gender</label>
+            <input type="gender" v-model="payload.gender" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">DOB</label>
+            <input type="dob" v-model="payload.userDOB" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">User Role</label>
+            <input type="userRole" v-model="payload.userRole" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" v-model="payload.emailAdd" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" v-model="payload.userPass" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Profile Pic</label>
+            <input type="profilepic" v-model="payload.profileUrl" class="form-control">
+          </div>
+          <div class="d-flex justify-content-center">
+
+              <button type="submit" class="btn  btn-outline-light">Sign up</button>
+          </div>
+        </form>
+  </div>
 </template>
+
 <script>
-export default {
-  data() {
-      return {
-          payload: {
-              userID: "",
-              firstName: "",
-              lastName: "",
-              userAge: "",
-              gender: "",
-              emailAdd: "",
-              userPass: "",
-              profileLUrl: ""
+import { useCookies } from "vue3-cookies"
+const {cookies} = useCookies()
+  export default {
+      data() {
+          return {
+              payload: {
+                  firstName: "",
+                  lastName: "",
+                  gender: "",
+                  userDOB: "",
+                  userRole: "",
+                  emailAdd: "",
+                  userPass: "",
+                  profileUrl: ""
+              },
+          };
+      },
+      computed: {
+          user() {
+              return this.$store.state.user;
+          },
+      },
+      methods: {
+          register() {
+              this.$store.dispatch('register', this.payload)
+              console.log('running');
           }
-      }
-  },
-  methods: {
-      register() {
-          this.$store.dispatch('register', this.payload)
+      },
+      mounted() {
+          console.log(cookies.get('ActualUser'));
       }
   }
-}
 </script>
+
 <style scoped>
-.mb-3{
-width: 40%;
-margin-left: 29rem;
-margin-top: 1rem;
+.form-heading{
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
-.btn{
-color: black;
-margin-left: 29rem;
+
+.custom-container{
+  background-color: rgb(52, 52, 52);
+
+  border-radius: 50px;
+  position: relative;
+  bottom: 5rem;
+  min-width: 16rem;
+  max-width: 40%;
 }
+
+
 </style>

@@ -8,11 +8,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeViewVue,
-    beforeEnter(){
-      if (!cookies.get('ActualUse')) {
-        router.push({name: 'register'})
-    }
-    }
   },
   {
     path: '/about',

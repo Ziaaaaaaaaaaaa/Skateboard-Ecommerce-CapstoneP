@@ -3,6 +3,7 @@ import axios from 'axios'
 import {useCookies} from 'vue3-cookies'
 import sweet from 'sweetalert'
 import auth from '@/services/AuthenticateUser'
+import router from '@/router'
 const url = 'https://skateboard-ecom.onrender.com/'
 
 // const instance = axios.create({
@@ -118,49 +119,54 @@ export default createStore({
     // }
     // },
 
-    // async register(context, payload) {
-    //   try {
-    //     const { msg } = (await axios.post(`${artUrl}users`, payload)).data;
-    //     if (msg) {
-    //       sweet({
-    //         title: "Registration",
-    //         text: msg,
-    //         icon: "success",
-    //         timer: 4000,
-    //       });
-    //       context.dispatch("fetchUsers");
-    //       router.push({ name: "login" });
-    //     } else {
-    //       sweet({
-    //         title: "Error",
-    //         text: msg,
-    //         icon: "error",
-    //         timer: 4000
-    //       });
-    //     }
-    //   } catch (e) {
-    //     context.commit("setMsg", "An error has occured");
-    //   }
-    // },
+    async register(context, payload) {
+      try {
+        const { msg } = (await axios.post(`${url}register`, payload)).data;
+        if (msg) {
+          sweet({
+            title: "Registration",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+          context.dispatch("fetchUsers");
+          router.push({ name: "login" });
+        } else {
+          sweet({
+            title: "Error",
+            text: msg,
+            icon: "error",
+            timer: 4000
+          });
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error has occured");
+      }
+    },
 
     async login(context, payload) {
       try {
-        const { msg, token, data } = (
-          await axios.post(`${url}register`,payload)
+        const { msg, token, result } = (
+          await axios.post(`${url}login`,payload)
         ).data;
-        console.log(data);
-        if (data) {
-          context.commit("setUser",{data, msg });
-          cookies.set("ActualUser",{ msg, token, data});
+        if (result) {
+          context.commit("setUser",{result, msg });
+          cookies.set("ActualUser",{ msg, token, result});
           auth.applyToken(token);
-          console.log('Logged In');
-          console.log(data);
-          // sweet({
-          //   title: msg,
-          //   text: `Welcome back ${data?.firstName} ${data?.lastName}`,
-          //   icon: "success",
-          //   timer: 2000,
-          // });
+          sweet({
+              title: msg,
+              text: `Welcome back ${result?.firstName} ${result?.lastName}`,
+              icon: "success",
+              timer: 2000,
+            });
+            router.push({name: "home"})
+        } else {
+            sweet({
+                title: msg,
+                text: `Error`,
+                icon: "error",
+                timer: 2000,
+              });
         }
       } catch (e) {
         context.commit("setMsg", "An error has occured");
