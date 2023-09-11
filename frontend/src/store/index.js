@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import useCookies from 'vue3-usecookies'
-// import sweet from 'sweetalert'
+import sweet from 'sweetalert'
 const url = 'https://skateboard-ecom.onrender.com/'
 
 // const instance = axios.create({
@@ -144,19 +144,21 @@ export default createStore({
 
     async login(context, payload) {
       try {
-        const { msg, token, result } = (
+        const { msg, token, data } = (
           await axios.post(`${dataUrl}users`,payload)
         ).data;
-        if (result) {
-          context.commit("setUser",{result, msg });
-          cookies.set("ActualUser",{ msg, token, result});
+        console.log(data);
+        if (data) {
+          context.commit("setUser",{data, msg });
+          cookies.set("ActualUser",{ msg, token, data});
           Authenticate.applyToken(token);
-          sweetAlert({
-            title: msg,
-            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
-            icon: "success",
-            timer: 2000,
-          });
+          console.log('Logged In');
+          // sweet({
+          //   title: msg,
+          //   text: `Welcome back ${data?.firstName} ${data?.lastName}`,
+          //   icon: "success",
+          //   timer: 2000,
+          // });
         }
       } catch (e) {
         context.commit("setMsg", "An error has occured");

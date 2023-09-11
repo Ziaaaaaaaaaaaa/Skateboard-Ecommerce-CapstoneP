@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { useCookies } from "vue3-usecookies"
-const {cookies} = useCookies
+import { useCookies } from "vue3-cookies"
+const {cookies} = useCookies()
     export default {
         data() {
             return {
@@ -36,12 +36,10 @@ const {cookies} = useCookies
             },
         },
         methods: {
-            login() {
-                this.$store.dispatch('login', this.payload)
+            async login() {
+               await this.$store.dispatch('login', this.payload)
+                console.log('running');
             }
-        },
-        beforeCreate() {
-            this.$store.dispatch('fetchUser')
         },
         mounted() {
             console.log(cookies.get('ActualUser'));
