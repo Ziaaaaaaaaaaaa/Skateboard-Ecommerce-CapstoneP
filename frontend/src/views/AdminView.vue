@@ -74,10 +74,10 @@ import AddProduct from "@/components/AppProduct.vue";
 
         methods: {
             
-          deleteUser(userID) {
+          deleteUser(item) {
         if (confirm("Please confirm")) {
           try {
-            this.$store.dispatch("deleteUser", userID);
+            this.$store.dispatch("deleteUser", item);
           } catch (e) {
             console.log("Error deleting user:");
           }
