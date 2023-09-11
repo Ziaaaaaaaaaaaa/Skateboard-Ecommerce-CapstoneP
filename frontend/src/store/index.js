@@ -4,12 +4,12 @@ import useCookies from 'vue3-usecookies'
 // import sweet from 'sweetalert'
 const url = 'https://skateboard-ecom.onrender.com/'
 
-const instance = axios.create({
-  baseURL: 'https://skateboard-ecom.onrender.com/users',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
+// const instance = axios.create({
+//   baseURL: 'https://skateboard-ecom.onrender.com/users',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// })
 
 const { cookies } = useCookies();
 
@@ -105,18 +105,43 @@ export default createStore({
       }
     },
 
-    async register({commit},userData){
-      try{
-        const response = await axios.post('https://skateboard-ecom.onrender.com/users', userData);
-        console.log(response.data);
-        commit('setUser',response.data.user);
-     }
-     catch (error){
-      console.error(error);
-     }
-    }
-    },
+    // async register({commit},userData){
+    //   try{
+    //     const response = await axios.post('https://skateboard-ecom.onrender.com/users', userData);
+    //     console.log(response.data);
+    //     commit('setUser',response.data.user);
+    //  }
+    //  catch (error){
+    //   console.error(error);
+    //  }
+    // }
+    // },
+
+    // async register(context, payload) {
+    //   try {
+    //     const { msg } = (await axios.post(`${artUrl}users`, payload)).data;
+    //     if (msg) {
+    //       sweet({
+    //         title: "Registration",
+    //         text: msg,
+    //         icon: "success",
+    //         timer: 4000,
+    //       });
+    //       context.dispatch("fetchUsers");
+    //       router.push({ name: "login" });
+    //     } else {
+    //       sweet({
+    //         title: "Error",
+    //         text: msg,
+    //         icon: "error",
+    //         timer: 4000
+    //       });
+    //     }
+    //   } catch (e) {
+    //     context.commit("setMsg", "An error has occured");
+    //   }
+    // },
 
   modules: {
   }
-})
+}})

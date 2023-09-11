@@ -1,74 +1,125 @@
 <template>
-  <div class="custom-container container h-100 pt-5 pb-5">
-    <h1 class="form-heading">Sign Up</h1>
-    <form @submit.prevent="submitForm">
-      <div class="mb-3">
-        <label for="exampleInputFirstname" class="form-label">First Name</label>
-        <input v-model="userData.firstName" type="text" class="form-control" id="exampleInputFirstname" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputLastname" class="form-label">Last Name</label>
-        <input v-model="userData.lastName" type="text" class="form-control" id="exampleInputLastname" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputGender" class="form-label">Gender</label>
-        <input v-model="userData.gender" type="text" class="form-control" id="exampleInputGender" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputDOB" class="form-label">Date of Birth</label>
-        <input v-model="userData.userDOB" type="text" class="form-control" id="exampleInputDOB" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail" class="form-label">Email address</label>
-        <input v-model="userData.emailAdd" type="email" class="form-control" id="exampleInputEmail">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword" class="form-label">Password</label>
-        <input v-model="userData.userPass" type="password" class="form-control" id="exampleInputPassword">
-      </div>
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-outline-light">Sign up</button>
-      </div>
-    </form>
-  </div>
+  <div>
+      <form @submit.prevent="register">
+        <div class="mb-3">
+          <label for="exampleInputfirstName1" class="form-label text-black">ID</label>
+            <input
+              type="firstName"
+              class="form-control"
+              id="exampleInputfirstName1"
+              aria-describedby="emailHelp"
+              v-model="payload.userID"
+              required
+            />
+            <label for="exampleInputfirstName1" class="form-label text-black">firstName</label>
+            <input
+              type="firstName"
+              class="form-control"
+              id="exampleInputfirstName1"
+              aria-describedby="emailHelp"
+              v-model="payload.firstName"
+              required
+            />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputlastName1" class="form-label text-black">lastName</label>
+          <input
+            type="lastName"
+            class="form-control"
+            id="exampleInputlastName1"
+            aria-describedby="emailHelp"
+            v-model="payload.lastName"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputuserAge1" class="form-label text-black">userDOB</label>
+          <input
+            type="userAge"
+            class="form-control"
+            id="exampleInputuserAge1"
+            aria-describedby="emailHelp"
+            v-model="payload.userDOB"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputgender1" class="form-label text-black">gender</label>
+          <input
+            type="gender"
+            class="form-control"
+            id="exampleInputgender1"
+            aria-describedby="emailHelp"
+            v-model="payload.gender"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label text-black">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            v-model="payload.emailAdd"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label text-black">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            v-model="payload.userPass"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputuserProfile1" class="form-label text-black">profileLUrl</label>
+          <input
+            type="userProfile"
+            class="form-control"
+            id="exampleInputuserProfile1"
+            v-model="payload.profileUrl"
+            required
+          />
+        </div>
+        <button type="submit" class="btn">Register</button>
+      </form>
+    </div>
 </template>
-
 <script>
 export default {
   data() {
-    return {
-      userData: {
-        firstName: "",
-        lastName: "",
-        gender: "",
-        userDOB: "",
-        emailAdd: "",
-        userPass: "",
-        profileUrl: ""
+      return {
+          payload: {
+              userID: "",
+              firstName: "",
+              lastName: "",
+              userAge: "",
+              gender: "",
+              emailAdd: "",
+              userPass: "",
+              profileLUrl: ""
+          }
       }
-    };
   },
   methods: {
-    async submitForm() {
-      await this.$store.dispatch('register', this.userData);
-    }
+      register() {
+          this.$store.dispatch('register', this.payload)
+      }
   }
-};
-</script>
-
-<style scoped>
-.form-heading {
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
-
-.custom-container {
-  background-color: rgb(52, 52, 52);
-  border-radius: 50px;
-  position: relative;
-  bottom: 5rem;
-  min-width: 16rem;
-  max-width: 40%;
+</script>
+<style scoped>
+.mb-3{
+width: 40%;
+margin-left: 29rem;
+margin-top: 1rem;
+}
+.btn{
+color: black;
+margin-left: 29rem;
 }
 </style>
