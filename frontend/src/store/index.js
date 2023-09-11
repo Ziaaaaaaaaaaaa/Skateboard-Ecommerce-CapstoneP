@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-import useCookies from 'vue3-usecookies'
+import {useCookies} from 'vue3-cookies'
 import sweet from 'sweetalert'
+import auth from '@/services/AuthenticateUser'
 const url = 'https://skateboard-ecom.onrender.com/'
 
 // const instance = axios.create({
@@ -145,14 +146,15 @@ export default createStore({
     async login(context, payload) {
       try {
         const { msg, token, data } = (
-          await axios.post(`${dataUrl}users`,payload)
+          await axios.post(`${url}register`,payload)
         ).data;
         console.log(data);
         if (data) {
           context.commit("setUser",{data, msg });
           cookies.set("ActualUser",{ msg, token, data});
-          Authenticate.applyToken(token);
+          auth.applyToken(token);
           console.log('Logged In');
+          console.log(data);
           // sweet({
           //   title: msg,
           //   text: `Welcome back ${data?.firstName} ${data?.lastName}`,
@@ -162,6 +164,7 @@ export default createStore({
         }
       } catch (e) {
         context.commit("setMsg", "An error has occured");
+        console.log(e);
       }
     },
 

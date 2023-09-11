@@ -36,8 +36,8 @@ const {cookies} = useCookies()
             },
         },
         methods: {
-            async login() {
-               await this.$store.dispatch('login', this.payload)
+            login() {
+                this.$store.dispatch('login', this.payload)
                 console.log('running');
             }
         },
