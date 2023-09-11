@@ -102,9 +102,10 @@ class Users{
   deleteUser(req, res) {
     const query = `
         DELETE FROM Users
-        WHERE userID = ${req.params.id}
+        WHERE userID = ?
         `;
-    db.query(query, (err) => {
+    const { userID } = req.params
+    db.query(query, [userID], (err) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
