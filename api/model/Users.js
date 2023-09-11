@@ -79,6 +79,49 @@ class Users{
         })
     }
 
+    login(req, res) {
+        const {emailAdd, userPass} = req.body
+        // query
+        const query = `
+        SELECT userID, firstName, lastName,
+        gender, userDOB, emailAdd, userPass,
+        profileUrl
+        FROM Users
+        WHERE emailAdd = ?;
+        `
+        db.query(query, [emailAdd], (err, result)=>{
+            if(err) throw err
+            if(!result?.length){
+                res.json({
+                    status: res.statusCode,
+                    msg: "You provided a wrong email."
+                })
+            }else {
+                compare(userPass, result[0].userPass, (cErr, cResult) => {
+                        if (cErr) throw cErr;
+                        // Create a token
+                        const token = createToken({
+                            emailAdd,
+                            userPass
+                        });
+
+                        if (cResult) {
+                            res.json({
+                                msg: "Logged in",
+                                token,
+                                result: result[0]
+                            });
+                        } else {
+                            res.json({
+                                status: res.statusCode,
+                                msg: "Invalid password or you have not registered"
+                            });
+                        }
+                    })
+            }
+        })
+    }
+
     updateUser(req, res) {
     const data = req.body;
     if (data.userPass) {

@@ -40,6 +40,9 @@ router.post('/register', bodyParser.json(), (req, res) =>{
     users.registerUser(req, res)
 })
 
+router.post('/login', bodyParser.json(), (req, res) =>{
+    users.login(req, res)
+})
 
 router.patch('/user/:userID', bodyParser.json(), (req, res) =>{
     users.updateUser(req, res)
