@@ -69,12 +69,10 @@ class Users{
                 })
             } else {
                 let token = createToken(user)
-                res.cookie('legitUser', token, {
-                    maxAge: 360000,
-                    httpOnly: true
-                })
                 res.json({
                     status: res.statusCode,
+                    token,
+                    data,
                     msg: "User has been successfully created"
                 })
             }
