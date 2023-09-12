@@ -2,9 +2,8 @@
   <div class="home h-100">    
         <div class="custom-container container">
           <h1 class="text-center  text-uppercase mb-5 pt-5">Featured Products</h1>
-          <div class="row">
+          <div class="row" v-if="featuredProds">
             <div class="col mb-5" v-for="item in featuredProds" :key="item.prodID">
-              <div v-if="products">
                 <div class="card m-auto" style="width: 18rem;" >
                   <img :src="item.prodUrl" class="card-img-top" alt="">
                   <div class="card-body h-50">
@@ -17,11 +16,10 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div v-else class="d-flex justify-content-center align-content-center">
-                <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
-              </div>
             </div>
+          </div>
+          <div v-else class="d-flex justify-content-center align-content-center">
+            <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
           </div>
         </div>
   </div>

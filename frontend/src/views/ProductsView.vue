@@ -9,7 +9,32 @@
           <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
           <h2 class="text-white">skateboards</h2>
           <ul class="cards">
-            <li class="card" v-for="item in products" :key="item.prodID">
+            <li class="card" v-for="item in skateboards" :key="item.prodID">
+              <div v-if="products">
+                <div>
+                  <img :src="item.prodUrl" class="card-img-top" alt="">
+                  <div class="card-body"></div>
+                  <p class="text-white">{{ item.prodName }}</p>
+                  <div class="card-content">
+                    <p class="text-white">{{ item.category }}</p>
+                  </div>
+                  <div class="card-content">
+                    <p class="text-white">R{{ item.amount }}</p>
+                  </div>
+                </div>
+                <div class="card-link-wrapper">
+                  <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
+                  <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
+                </div>
+              </div>
+              <div v-else class="d-flex justify-content-center align-content-center">
+                <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
+              </div>
+            </li>
+          </ul>
+          <h2 class="text-white">Decks</h2>
+          <ul class="cards">
+            <li class="card" v-for="item in decks" :key="item.prodID">
               <div v-if="products">
                 <div>
                   <img :src="item.prodUrl" class="card-img-top" alt="">
@@ -48,10 +73,18 @@ computed: {
 selectedProduct() {
   return this.$store.state.selectedProduct;
 },
+skateboards() {
+  return this.$store.state.skateboards;
+},
+decks() {
+  return this.$store.state.decks;
+},
 },
 mounted() {
-this.$store.dispatch('fetchBoards');// You may need to pass a prodID as an argument here.
-this.$store.dispatch('fetchProduct', this.prodID);// You may need to pass a prodID as an argument here.
+// this.$store.dispatch('fetchBoards');
+// this.$store.dispatch('fetchProduct', this.prodID);
+this.$store.dispatch('fetchSkateboards');
+this.$store.dispatch('fetchDecks');
 },
 
 
