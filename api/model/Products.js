@@ -130,7 +130,7 @@ fetchProducts(req, res){
 
   completeSkateboards(req, res){
     const query = 
-    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
      FROM Products
      WHERE category = 'Skateboard Complete'`
 
@@ -151,7 +151,7 @@ fetchProducts(req, res){
 
   deckSkateboards(req, res){
     const query = 
-    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
      FROM Products
      WHERE category = 'Skateboard Deck'`
 
