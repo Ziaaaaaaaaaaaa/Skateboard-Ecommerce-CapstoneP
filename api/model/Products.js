@@ -108,7 +108,7 @@ fetchProducts(req, res){
 //   // Feature products
   featureProds(req, res){
     const query = 
-    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
      FROM Products
      WHERE category = 'Skateboard Complete'
      LIMIT 5`
