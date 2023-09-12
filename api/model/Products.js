@@ -106,47 +106,47 @@ fetchProducts(req, res){
 //   // Sort functions
   
 //   // Feature products
-//   featureProds(req, res){
-//     const query = 
-//     `SELECT prodID, prodName, quantity, prodDesc, category, amount
-//      FROM Products
-//      LIMIT 5`
+  featureProds(req, res){
+    const query = 
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+     FROM Products
+     LIMIT 5`
 
-//      db.query(query, (err, results) =>{
-//       if(err){
-//         res.json({
-//           msg: "Something went wrong",
-//           err: err.message
-//         })
-//       } else{
-//         res.json({
-//           status: res.statusCode,
-//           results
-//         })
-//       }
-//      })
-//   }
+     db.query(query, (err, results) =>{
+      if(err){
+        res.json({
+          msg: "Something went wrong",
+          err: err.message
+        })
+      } else{
+        res.json({
+          status: res.statusCode,
+          results
+        })
+      }
+     })
+  }
 
-//   // Sort by product name
-//   sortProd(req, res){
-//     const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
-//        FROM Products
-//        ORDER BY prodName`;
+  // Sort by product name
+  sortProd(req, res){
+    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
+       FROM Products
+       ORDER BY prodName`;
   
-//     db.query(query, (err, results) => {
-//       if (err) {
-//         res.json({
-//           status: res.statusCode,
-//           msg: err.message,
-//         });
-//       } else {
-//         res.json({
-//           status: res.statusCode,
-//           results,
-//         });
-//       }
-//     });
-//   };
+    db.query(query, (err, results) => {
+      if (err) {
+        res.json({
+          status: res.statusCode,
+          msg: err.message,
+        });
+      } else {
+        res.json({
+          status: res.statusCode,
+          results,
+        });
+      }
+    });
+  };
   
 //   // Sort by product price
   sortPrice(req, res){
