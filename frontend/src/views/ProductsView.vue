@@ -81,7 +81,7 @@ decks() {
 },
 },
 mounted() {
-// this.$store.dispatch('fetchBoards');
+this.$store.dispatch('fetchBoards');
 // this.$store.dispatch('fetchProduct', this.prodID);
 this.$store.dispatch('fetchSkateboards');
 this.$store.dispatch('fetchDecks');

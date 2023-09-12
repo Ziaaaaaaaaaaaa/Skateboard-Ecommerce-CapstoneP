@@ -93,11 +93,11 @@ export default createStore({
     },
 
     async fetchSkateboards({commit}){
-      const fetchedSkateboards = await axios.get(`${url}Skateboard Complete`)
+      const fetchedSkateboards = await axios.get(`${url}complete`)
       commit('setSkateboard', fetchedSkateboards.data.results)
     },
     async fetchDecks({commit}){
-      const fetchedDecks = await axios.get(`${url}Skateboard Deck`)
+      const fetchedDecks = await axios.get(`${url}decks`)
       commit('setDecks', fetchedDecks.data.results)
     },
 
