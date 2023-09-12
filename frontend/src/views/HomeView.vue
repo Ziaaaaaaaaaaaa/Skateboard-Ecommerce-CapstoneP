@@ -40,12 +40,16 @@ export default {
   },
   featuredProds(){
       return this.$store.state.featuredProds
+    },
+    fetchSkateboards() {
+      return this.$store.state.skateboards
     }
 },
 mounted() {
-  this.$store.dispatch('fetchBoards');// You may need to pass a prodID as an argument here.
+  // this.$store.dispatch('fetchBoards');// You may need to pass a prodID as an argument here.
   this.$store.dispatch('fetchProduct', this.prodID);// You may need to pass a prodID as an argument here.
   this.$store.dispatch('fetchFeatured')
+  // this.$store.dispatch('fetchSkateboards')
 },
 
 

@@ -22,6 +22,7 @@ export default createStore({
     selectedProduct: null,
     featuredProds: null,
     skateboards: null,
+    decks: null,
     users: null,
     addProduct: null,
     msg:null
@@ -44,6 +45,9 @@ export default createStore({
     },
     setSkateboard(state, data){
       state.skateboards = data
+    },
+    setDecks(state, data){
+      state.decks = data
     },
     setUsers(state, users){
       state.users = users
@@ -91,6 +95,10 @@ export default createStore({
     async fetchSkateboards({commit}){
       const fetchedSkateboards = await axios.get(`${url}Skateboard Complete`)
       commit('setSkateboard', fetchedSkateboards.data.results)
+    },
+    async fetchDecks({commit}){
+      const fetchedDecks = await axios.get(`${url}Skateboard Deck`)
+      commit('setDecks', fetchedDecks.data.results)
     },
 
     async addProduct({commit}, productdata) {
