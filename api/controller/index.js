@@ -73,6 +73,14 @@ router.get('/featured', (req, res) =>{
     products.featureProds(req, res)
 })
 
+router.get('/complete', (req, res) =>{
+    products.completeSkateboards(req, res)
+})
+
+router.get('/decks', (req, res) =>{
+    products.deckSkateboards(req, res)
+})
+
 module.exports = {
     express,
     router

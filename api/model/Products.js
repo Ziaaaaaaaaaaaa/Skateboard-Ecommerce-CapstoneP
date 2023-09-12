@@ -128,6 +128,48 @@ fetchProducts(req, res){
      })
   }
 
+  completeSkateboards(req, res){
+    const query = 
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+     FROM Products
+     WHERE category = 'Skateboard Complete'`
+
+     db.query(query, (err, results) =>{
+      if(err){
+        res.json({
+          msg: "Something went wrong",
+          err: err.message
+        })
+      } else{
+        res.json({
+          status: res.statusCode,
+          results
+        })
+      }
+     })
+  }
+
+  deckSkateboards(req, res){
+    const query = 
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount
+     FROM Products
+     WHERE category = 'Skateboard Deck'`
+
+     db.query(query, (err, results) =>{
+      if(err){
+        res.json({
+          msg: "Something went wrong",
+          err: err.message
+        })
+      } else{
+        res.json({
+          status: res.statusCode,
+          results
+        })
+      }
+     })
+  }
+
   // Sort by product name
   sortProd(req, res){
     const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
