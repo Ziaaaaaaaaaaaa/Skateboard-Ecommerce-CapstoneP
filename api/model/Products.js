@@ -149,61 +149,61 @@ fetchProducts(req, res){
 //   };
   
 //   // Sort by product price
-//   sortPrice(req, res){
-//     const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
-//        FROM Products
-//        ORDER BY amount`;
+  sortPrice(req, res){
+    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
+       FROM Products
+       ORDER BY amount`;
   
-//     db.query(query, (err, results) => {
-//       if (err) {
-//         res.json({
-//           status: res.statusCode,
-//           msg: err.message,
-//         });
-//       } else {
-//         res.json({
-//           status: res.statusCode,
-//           results,
-//         });
-//       }
-//     });
-//   };
+    db.query(query, (err, results) => {
+      if (err) {
+        res.json({
+          status: res.statusCode,
+          msg: err.message,
+        });
+      } else {
+        res.json({
+          status: res.statusCode,
+          results,
+        });
+      }
+    });
+  };
 
-//   probCategory(req, res){
-//     const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
-//     FROM Products
-//     WHERE category LIKE ?`
+  probCategory(req, res){
+    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
+    FROM Products
+    WHERE category LIKE ?`
 
-//     const { category } = req.params
+    const { category } = req.params
 
-//     db.query(query, ['%' + category + '%'], (err, results) =>{
-//         if (err) {
-//             res.json({
-//               status: res.statusCode,
-//               msg: err.message,
-//             });
-//           } else {
-//             res.json({
-//               status: res.statusCode,
-//               results,
-//             });
-//           }
-//     })
-//   }
+    db.query(query, ['%' + category + '%'], (err, results) =>{
+        if (err) {
+            res.json({
+              status: res.statusCode,
+              msg: err.message,
+            });
+          } else {
+            res.json({
+              status: res.statusCode,
+              results,
+            });
+          }
+    })
+  }
   
-//   // testing
-//   showTrucks(req, res){
-//     const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
-//        FROM Products
-//        WHERE category = ''`;
+  // testing
+  showSkateboards(req, res){
+    const query = `SELECT prodID, prodName, quantity, prodDesc, category, amount
+       FROM Products
+       WHERE category = 'Skateboard Complete'`;
   
-//     db.query(query, (err, results) => {
-//       if (err) throw err;
-//       res.json({
-//         results,
-//       });
-//     });
-//   };
+    db.query(query, (err, results) => {
+      if (err) throw err;
+      res.json({
+        results,
+      });
+    });
+  };
 }
 
 
