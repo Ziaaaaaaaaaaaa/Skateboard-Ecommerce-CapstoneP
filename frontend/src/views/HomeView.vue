@@ -3,7 +3,7 @@
         <div class="custom-container container">
           <h1 class="text-center  text-uppercase mb-5 pt-5">Featured Products</h1>
           <div class="row">
-            <div class="col mb-5" v-for="item in products" :key="item.prodID">
+            <div class="col mb-5" v-for="item in featuredProds" :key="item.prodID">
               <div v-if="products">
                 <div class="card m-auto" style="width: 18rem;" >
                   <img :src="item.prodUrl" class="card-img-top" alt="">
@@ -38,11 +38,16 @@ export default {
   selectedProduct() {
     return this.$store.state.selectedProduct;
   },
+  featuredProds(){
+      return this.$store.state.featuredProds
+    }
 },
 mounted() {
   this.$store.dispatch('fetchBoards');// You may need to pass a prodID as an argument here.
   this.$store.dispatch('fetchProduct', this.prodID);// You may need to pass a prodID as an argument here.
+  this.$store.dispatch('fetchFeatured')
 },
+
 
 
 };

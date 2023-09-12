@@ -20,6 +20,8 @@ export default createStore({
     products: null,
     product: null,
     selectedProduct: null,
+    featuredProds: null,
+    skateboards: null,
     users: null,
     addProduct: null,
     msg:null
@@ -36,6 +38,12 @@ export default createStore({
     },
     setSelectedProd(state, board){
       state.selectedProduct = board
+    },
+    setFeature(state, data){
+      state.featuredProds = data
+    },
+    setSkateboard(state, data){
+      state.skateboards = data
     },
     setUsers(state, users){
       state.users = users
@@ -75,6 +83,15 @@ export default createStore({
       }
     },
     
+    async fetchFeatured({commit}){
+      const fetchedFeatures = await axios.get(`${url}featured`)
+      commit('setFeature', fetchedFeatures.data.results)
+    },
+
+    async fetchSkateboards({commit}){
+      const fetchedSkateboards = await axios.get(`${url}Skateboard Complete`)
+      commit('setSkateboard', fetchedSkateboards.data.results)
+    },
 
     async addProduct({commit}, productdata) {
       try {
@@ -198,6 +215,7 @@ export default createStore({
         context.commit("setMsg", "An error has occured");
       }
     },
+
     },
   modules: {
   }
