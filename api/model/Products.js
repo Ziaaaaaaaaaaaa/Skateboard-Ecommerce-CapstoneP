@@ -110,6 +110,7 @@ fetchProducts(req, res){
     const query = 
     `SELECT prodID, prodName, quantity, prodDesc, category, amount
      FROM Products
+     WHERE category = 'Skateboard Complete'
      LIMIT 5`
 
      db.query(query, (err, results) =>{
