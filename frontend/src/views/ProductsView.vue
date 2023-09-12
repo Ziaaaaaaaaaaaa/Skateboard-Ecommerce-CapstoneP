@@ -1,108 +1,198 @@
 <template>
   <div class="home">
     <div class="heading">
-      <div class="d-flex justify-content-center ">
+      <div class="d-flex justify-content-center">
         <h1 class="heading-text text-white">Product Page</h1>
       </div>
     </div>
-        <div class="container">
-          <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
-          <h2 class="text-white">skateboards</h2>
-          <ul class="cards">
-            <li class="card" v-for="item in skateboards" :key="item.prodID">
-              <div v-if="products">
-                <div>
-                  <img :src="item.prodUrl" class="card-img-top" alt="">
-                  <div class="card-body"></div>
-                  <p class="text-white">{{ item.prodName }}</p>
-                  <div class="card-content">
-                    <p class="text-white">{{ item.category }}</p>
-                  </div>
-                  <div class="card-content">
-                    <p class="text-white">R{{ item.amount }}</p>
-                  </div>
-                </div>
-                <div class="card-link-wrapper">
-                  <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
-                  <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
-                </div>
+    <div class="container">
+      <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
+      <h2 class="text-white">skateboards</h2>
+      <ul class="cards">
+        <li class="card" v-for="item in skateboards" :key="item.prodID">
+          <div v-if="products">
+            <div>
+              <img :src="item.prodUrl" class="card-img-top" alt="" />
+              <div class="card-body"></div>
+              <p class="text-white">{{ item.prodName }}</p>
+              <div class="card-content">
+                <p class="text-white">{{ item.category }}</p>
               </div>
-              <div v-else class="d-flex justify-content-center align-content-center">
-                <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
+              <div class="card-content">
+                <p class="text-white">R{{ item.amount }}</p>
               </div>
-            </li>
-          </ul>
-          <h2 class="text-white">Decks</h2>
-          <ul class="cards">
-            <li class="card" v-for="item in decks" :key="item.prodID">
-              <div v-if="products">
-                <div>
-                  <img :src="item.prodUrl" class="card-img-top" alt="">
-                  <div class="card-body"></div>
-                  <p class="text-white">{{ item.prodName }}</p>
-                  <div class="card-content">
-                    <p class="text-white">{{ item.category }}</p>
-                  </div>
-                  <div class="card-content">
-                    <p class="text-white">R{{ item.amount }}</p>
-                  </div>
-                </div>
-                <div class="card-link-wrapper">
-                  <a href="" class="btn  btn-outline-light me-2">Buy Now</a>
-                  <router-link class="btn  btn-outline-light" :to="'/product/' + item.prodID">View More</router-link>
-                </div>
+            </div>
+            <div class="card-link-wrapper">
+              <!-- <router-link
+                class="btn btn-outline-light me-2"
+                @click="AddCart"
+                :to="'/checkout' + item.prodID"
+                >Buy Now</router-link
+              > -->
+              <button @click="AddCart(item)" class="btn">Cart</button>
+              <!-- <button @click="AddCart">Cart</button> -->
+              <router-link
+                class="btn btn-outline-light"
+                :to="'/product/' + item.prodID"
+                >View More</router-link
+              >
+            </div>
+          </div>
+          <div
+            v-else
+            class="d-flex justify-content-center align-content-center"
+          >
+            <img
+              src="../assets/image/oie_4124746Iyfhd6WY.gif"
+              class="spinner"
+              alt=""
+            />
+          </div>
+        </li>
+      </ul>
+      <h2 class="text-white">Decks</h2>
+      <ul class="cards">
+        <li class="card" v-for="item in decks" :key="item.prodID">
+          <div v-if="products">
+            <div>
+              <img :src="item.prodUrl" class="card-img-top" alt="" />
+              <div class="card-body"></div>
+              <p class="text-white">{{ item.prodName }}</p>
+              <div class="card-content">
+                <p class="text-white">{{ item.category }}</p>
               </div>
-              <div v-else class="d-flex justify-content-center align-content-center">
-                <img src="../assets/image/oie_4124746Iyfhd6WY.gif" class="spinner" alt="">
+              <div class="card-content">
+                <p class="text-white">R{{ item.amount }}</p>
               </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+            </div>
+            <div class="card-link-wrapper">
+              <!-- <router-link
+                class="btn btn-outline-light me-2"
+                :to="'/checkout' + item.prodID"
+                >Buy Now</router-link
+              > -->
+              <!-- <button @click="AddCart" class="btn">Buy Now</button> -->
+              <button @click="AddCart(item)" class="btn">Cart</button>
+              <router-link
+                class="btn btn-outline-light"
+                :to="'/product/' + item.prodID"
+                >View More</router-link
+              >
+            </div>
+          </div>
+          <div
+            v-else
+            class="d-flex justify-content-center align-content-center"
+          >
+            <img
+              src="../assets/image/oie_4124746Iyfhd6WY.gif"
+              class="spinner"
+              alt=""
+            />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
-
 export default {
 
-  
-computed: {
-  products() {
-  return this.$store.state.products;
-},
-selectedProduct() {
-  return this.$store.state.selectedProduct;
-},
-skateboards() {
-  return this.$store.state.skateboards;
-},
-decks() {
-  return this.$store.state.decks;
-},
-},
-mounted() {
-this.$store.dispatch('fetchBoards');
-// this.$store.dispatch('fetchProduct', this.prodID);
-this.$store.dispatch('fetchSkateboards');
-this.$store.dispatch('fetchDecks');
-},
+    data() {
+        return {
+            sortBy: '', // Store the sorting criteria here
+        };
+    },
+    computed: {
+        sortedProducts() {
+            if (this.sortBy === 'name') {
+                // Sort products by name
+                return this.products.slice().sort((a, b) => a.name.localeCompare(b.name));
+            } else if (this.sortBy === 'price') {
+                // Sort products by price
+                return this.products.slice().sort((a, b) => a.price - b.price);
+            } else {
+                return this.products; // No sorting
+            }
+        },
+    },
+    template: `
+        <div>
+            <div>
+                <label for="sort">Sort by:</label>
+                <select id="sort" v-model="sortBy">
+                    <option value="">None</option>
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                </select>
+            </div>
+            <ul>
+                <li v-for="item in products" :key="item.prodID">
+                    {{ item.prodName }} - {{ item.amount }}
+                </li>
+            </ul>
+        </div>
+    `,
 
 
+  data() {
+    return {
+      payload: {
+        firstName: "",
+        lastName: "",
+        gender: "",
+        userDOB: "",
+        userRole: "",
+        emailAdd: "",
+        userPass: "",
+        profileUrl: "",
+      },
+    };
+  },
+  methods: {
+    AddCart(item) {
+      const data = JSON.parse(localStorage.getItem('cart')) || []
+
+      const newData = {key: item}
+      data.push(newData)
+
+      localStorage.setItem('cart', JSON.stringify(data))
+    },
+  },
+
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+    selectedProduct() {
+      return this.$store.state.selectedProduct;
+    },
+    skateboards() {
+      return this.$store.state.skateboards;
+    },
+    decks() {
+      return this.$store.state.decks;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchBoards");
+    // this.$store.dispatch('fetchProduct', this.prodID);
+    this.$store.dispatch("fetchSkateboards");
+    this.$store.dispatch("fetchDecks");
+  },
 };
 </script>
 
 <style scoped>
-
-
-.text-center{
+.text-center {
   border-top-left-radius: 50px;
-
 }
 
-  .card{
-    background-color: rgb(20, 20, 20) !important
-  }
-.container{
+.card {
+  background-color: rgb(20, 20, 20) !important;
+}
+.container {
   background-color: rgb(52, 52, 52);
   position: relative;
   padding-left: 10rem;
@@ -110,24 +200,20 @@ this.$store.dispatch('fetchDecks');
   border-radius: 50px;
 }
 
-
-
-.card{
+.card {
   background-color: rgb(79, 79, 79);
-
 }
 
-.heading{
+.heading {
   border-radius: 20px;
   background-color: rgba(24, 24, 24, 0.58);
   position: relative;
   z-index: 1;
   bottom: 26rem;
   width: 35%;
-  
 }
 
-.heading-text{
+.heading-text {
   font-size: 5rem;
 }
 
@@ -227,4 +313,3 @@ this.$store.dispatch('fetchDecks');
   }
 }
 </style>
-
