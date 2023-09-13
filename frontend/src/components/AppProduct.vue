@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add</button>
+        <button type="button" class="btn  btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add</button>
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -16,11 +16,11 @@
             <input type="text" class="text-black" v-model="productdata.quantity" placeholder="Quantity" name="" id="" required>
             <input type="text" class="text-black" v-model="productdata.amount" placeholder="price" name="" id="">
             <input type="text" class="text-black" v-model="productdata.prodUrl" placeholder="image" name="" id="">
-            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn btn-dark">Add</button>
            </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn  btn-dark" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -49,11 +49,7 @@
     }
 </script>
 <style scoped>
-.btn{
-    background-color: black;
-    border-radius: 1px;
-    color: white;
-}
+
 </style>
 
 

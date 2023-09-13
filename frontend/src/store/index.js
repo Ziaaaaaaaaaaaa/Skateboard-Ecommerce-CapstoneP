@@ -6,12 +6,6 @@ import auth from '@/services/AuthenticateUser'
 import router from '@/router'
 const url = 'https://skateboard-ecom.onrender.com/'
 
-// const instance = axios.create({
-//   baseURL: 'https://skateboard-ecom.onrender.com/users',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   }
-// })
 
 const { cookies } = useCookies();
 
@@ -25,9 +19,8 @@ export default createStore({
     decks: null,
     users: null,
     addProduct: null,
+    addUser: null,
     msg:null,
-    sortBy: 'prodName', // Default sorting key
-    sortDirection: 'asc', // Default sorting direction
     search:null
   },
   getters: {
@@ -65,6 +58,9 @@ export default createStore({
     },
     setDeleteProd(state, data){
       state.products = data
+    },
+    setAddUser(state, data){
+      state.addUser = data
     },
     setDeleteUser(state, data){
       state.users = data
@@ -122,6 +118,15 @@ export default createStore({
       location.reload()
       context.dispatch('setProducts')
     },  
+    async addUser({commit}, userdata) {
+      try {
+        const response = await axios.post(`${url}user`, userdata)
+      commit('setAddUser', response.data)
+      console.log("success");
+      } catch (e) {
+        console.log('Error adding product');
+    }
+    },
     async deleteUser(context, userID) {
       try {
         const { data } = await axios.delete(`${url}user/${userID}`)
@@ -141,7 +146,6 @@ export default createStore({
             timer: 4000,
           });
           context.dispatch("fetchUsers");
-          router.push({ name: "login" });
         } else {
           sweet({
             title: "Error",

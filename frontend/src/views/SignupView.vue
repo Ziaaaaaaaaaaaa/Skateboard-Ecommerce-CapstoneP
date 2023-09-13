@@ -68,7 +68,7 @@ const {cookies} = useCookies()
       methods: {
           register() {
               this.$store.dispatch('register', this.payload)
-              console.log('running');
+              console.log(this.payload);
           }
       },
       mounted() {

@@ -7,13 +7,13 @@
     </div>
     <div class="container">
       <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
-      <button class="btn btn-outline-light" @click="SortName">sort Name</button>
-      <button class="btn btn-outline-light" @click="SortPrice">sort Price</button>
+      <button class="btn btn-outline-light" @click="sortByName">sort Name</button>
+      <button class="btn btn-outline-light" @click="sortByPrice">sort Price</button>
 
-      <h2 class="text-white">skateboards</h2>
+      <h2 class="text-white">Skateboards</h2>
       <ul class="cards">
-        <li class="card" v-for="item in skateboards" :key="item.prodID">
-          <div v-if="products">
+        <li class="card" v-for="item in sortedSkateboards" :key="item.prodID">
+          <div v-if="sortedSkateboards">
             <div>
               <img :src="item.prodUrl" class="card-img-top" alt="" />
               <div class="card-body"></div>
@@ -26,14 +26,7 @@
               </div>
             </div>
             <div class="card-link-wrapper">
-              <!-- <router-link
-                class="btn btn-outline-light me-2"
-                @click="AddCart"
-                :to="'/checkout' + item.prodID"
-                >Buy Now</router-link
-              > -->
-              <button @click="AddCart(item)" class="btn">Cart</button>
-              <!-- <button @click="AddCart">Cart</button> -->
+              <button @click="AddCart(item)" class="btn btn-outline-light">Cart</button>
               <router-link
                 class="btn btn-outline-light"
                 :to="'/product/' + item.prodID"
@@ -55,8 +48,8 @@
       </ul>
       <h2 class="text-white">Decks</h2>
       <ul class="cards">
-        <li class="card" v-for="item in decks" :key="item.prodID">
-          <div v-if="products">
+        <li class="card" v-for="item in sortedProducts" :key="item.prodID">
+          <div v-if="sortedProducts">
             <div>
               <img :src="item.prodUrl" class="card-img-top" alt="" />
               <div class="card-body"></div>
@@ -69,13 +62,7 @@
               </div>
             </div>
             <div class="card-link-wrapper">
-              <!-- <router-link
-                class="btn btn-outline-light me-2"
-                :to="'/checkout' + item.prodID"
-                >Buy Now</router-link
-              > -->
-              <!-- <button @click="AddCart" class="btn">Buy Now</button> -->
-              <button @click="AddCart(item)" class="btn">Cart</button>
+              <button @click="AddCart(item)" class="btn btn-outline-light">Cart</button>
               <router-link
                 class="btn btn-outline-light"
                 :to="'/product/' + item.prodID"
@@ -115,6 +102,7 @@ export default {
         userPass: "",
         profileUrl: "",
       },
+      sortType: ''
     };
   },
   methods: {
@@ -126,13 +114,13 @@ export default {
       
       localStorage.setItem('cart', JSON.stringify(data))
     },
-    SortName() {
-      this.$store.dispatch("SortingName")
+    sortByName() {
+      this.sortType = 'prodName';
     },
-    setSortPrice() {
-      this.$store.dispatch("SortingAmount")
-    }
-    
+    sortByPrice() {
+      this.sortType = 'amount';
+    },
+
     
   },
 
@@ -149,11 +137,34 @@ export default {
     decks() {
       return this.$store.state.decks;
     },
+    
+    sortedProducts(){
+      if (this.sortType === 'amount') {
+      return [...this.decks].sort((a, b) => a.amount - b.amount);
+    } else if (this.sortType === 'prodName') {
+      return [...this.decks].sort((a, b) =>
+        a.prodName.localeCompare(b.prodName)
+      );
+    }
+
+    return this.decks
+    },
+    sortedSkateboards(){
+      if (this.sortType === 'amount') {
+      return [...this.skateboards].sort((a, b) => a.amount - b.amount);
+    } else if (this.sortType === 'prodName') {
+      return [...this.skateboards].sort((a, b) =>
+        a.prodName.localeCompare(b.prodName)
+      );
+    }
+
+    return this.skateboards
+    }
 
   },
   mounted() {
     this.$store.dispatch("fetchBoards");
-    // this.$store.dispatch('fetchProduct', this.prodID);
+    this.$store.dispatch('fetchProduct', this.prodID);
     this.$store.dispatch("fetchSkateboards");
     this.$store.dispatch("fetchDecks");
 
