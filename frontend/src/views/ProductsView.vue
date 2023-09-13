@@ -7,6 +7,9 @@
     </div>
     <div class="container">
       <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
+      <button class="btn btn-outline-light" @click="SortName">sort Name</button>
+      <button class="btn btn-outline-light" @click="SortPrice">sort Price</button>
+
       <h2 class="text-white">skateboards</h2>
       <ul class="cards">
         <li class="card" v-for="item in skateboards" :key="item.prodID">
@@ -99,43 +102,7 @@
 <script>
 export default {
 
-    data() {
-        return {
-            sortBy: '', // Store the sorting criteria here
-        };
-    },
-    computed: {
-        sortedProducts() {
-            if (this.sortBy === 'name') {
-                // Sort products by name
-                return this.products.slice().sort((a, b) => a.name.localeCompare(b.name));
-            } else if (this.sortBy === 'price') {
-                // Sort products by price
-                return this.products.slice().sort((a, b) => a.price - b.price);
-            } else {
-                return this.products; // No sorting
-            }
-        },
-    },
-    template: `
-        <div>
-            <div>
-                <label for="sort">Sort by:</label>
-                <select id="sort" v-model="sortBy">
-                    <option value="">None</option>
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                </select>
-            </div>
-            <ul>
-                <li v-for="item in products" :key="item.prodID">
-                    {{ item.prodName }} - {{ item.amount }}
-                </li>
-            </ul>
-        </div>
-    `,
-
-
+  
   data() {
     return {
       payload: {
@@ -153,12 +120,20 @@ export default {
   methods: {
     AddCart(item) {
       const data = JSON.parse(localStorage.getItem('cart')) || []
-
+      
       const newData = {key: item}
       data.push(newData)
-
+      
       localStorage.setItem('cart', JSON.stringify(data))
     },
+    SortName() {
+      this.$store.dispatch("SortingName")
+    },
+    setSortPrice() {
+      this.$store.dispatch("SortingAmount")
+    }
+    
+    
   },
 
   computed: {
@@ -174,14 +149,20 @@ export default {
     decks() {
       return this.$store.state.decks;
     },
+
   },
   mounted() {
     this.$store.dispatch("fetchBoards");
     // this.$store.dispatch('fetchProduct', this.prodID);
     this.$store.dispatch("fetchSkateboards");
     this.$store.dispatch("fetchDecks");
+
+
   },
+  
+
 };
+
 </script>
 
 <style scoped>

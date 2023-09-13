@@ -25,10 +25,15 @@ export default createStore({
     decks: null,
     users: null,
     addProduct: null,
-    msg:null
-    
+    msg:null,
+    sortBy: 'prodName', // Default sorting key
+    sortDirection: 'asc', // Default sorting direction
+    search:null
   },
   getters: {
+    sortedProd(state) {
+      return state.search
+    }
   },
   mutations: {
     setProducts(state, data){
@@ -66,6 +71,12 @@ export default createStore({
     },
     setMsg(state,msg){
       state.msg = msg;
+    },
+    SortName(state) {
+      state.products.sort((a, b) =>  a.prodName.localeCompare(b.prodName));
+    },
+    SortPrice(state) {
+      state.products.sort((a, b) => a.amount - b.amount);
     }
   },
   actions: {
@@ -76,8 +87,7 @@ export default createStore({
     async fetchUsers({commit}){
       const fetchUsers = await axios.get(`${url}users`)
       commit('setUsers', fetchUsers.data.results)
-    },
-   
+    }, 
     async fetchProduct({commit}, prodID){
       try {
         const response = await axios.get(`${url}product/${prodID}`)
@@ -85,13 +95,11 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
-    },
-    
+    },  
     async fetchFeatured({commit}){
       const fetchedFeatures = await axios.get(`${url}featured`)
       commit('setFeature', fetchedFeatures.data.results)
     },
-
     async fetchSkateboards({commit}){
       const fetchedSkateboards = await axios.get(`${url}complete`)
       commit('setSkateboard', fetchedSkateboards.data.results)
@@ -100,7 +108,6 @@ export default createStore({
       const fetchedDecks = await axios.get(`${url}decks`)
       commit('setDecks', fetchedDecks.data.results)
     },
-
     async addProduct({commit}, productdata) {
       try {
         const response = await axios.post(`${url}products`, productdata)
@@ -114,15 +121,7 @@ export default createStore({
       const response = await axios.delete(`${url}product/${prodID}`)
       location.reload()
       context.dispatch('setProducts')
-    },
-    
-    // async deleteUser(context, userID) {
-    //   const response = await axios.delete(`${url}user/${userID}`)
-    //   location.reload()
-    //   context.dispatch('setProducts')
-    // },
-   
-   
+    },  
     async deleteUser(context, userID) {
       try {
         const { data } = await axios.delete(`${url}user/${userID}`)
@@ -131,19 +130,6 @@ export default createStore({
         context.commit("setMsg", "An error occurred.");
       }
     },
-
-    // async register({commit},userData){
-    //   try{
-    //     const response = await axios.post('https://skateboard-ecom.onrender.com/users', userData);
-    //     console.log(response.data);
-    //     commit('setUser',response.data.user);
-    //  }
-    //  catch (error){
-    //   console.error(error);
-    //  }
-    // }
-    // },
-
     async register(context, payload) {
       try {
         const { msg } = (await axios.post(`${url}register`, payload)).data;
@@ -168,7 +154,6 @@ export default createStore({
         context.commit("setMsg", "An error has occured");
       }
     },
-
     async login(context, payload) {
       try {
         const { msg, token, result } = (
@@ -198,7 +183,6 @@ export default createStore({
         console.log(e);
       }
     },
-
     async addUser(context, payload){
       try{
         const { msg } = (await axios.post(`${dataUrl}register`, payload)).data;
@@ -223,7 +207,22 @@ export default createStore({
         context.commit("setMsg", "An error has occured");
       }
     },
-
+    async SortingName(context) {
+      try {
+        const { data } = await axios.get(`${url}products`);
+        context.commit("SortName", data.results);
+      } catch (e) {
+        context.commit("setMsg", "An Error has occured")
+      }
+    },
+    async SortingAmount(context) {
+      try {
+        const { data } = await axios.get(`${url}products`);
+        context.commit("SortPrice", data.results);
+      } catch (e) {
+        context.commit("setMsg", "An Error has occured")
+      }
+    },
     },
   modules: {
   }
