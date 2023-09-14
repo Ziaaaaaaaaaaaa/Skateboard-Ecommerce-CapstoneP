@@ -122,25 +122,6 @@ class Users{
         })
     }
 
-      // create a product
-  addUser(req, res){
-    const query = `INSERT INTO Users SET ?`;
-    const data = req.body;
-  
-    db.query(query, [data], (err) => {
-      if (err) {
-        res.json({
-          status: res.statusCode,
-          msg: err.message,
-        });
-      } else {
-        res.json({
-          status: res.statusCode,
-          msg: "User has been successfully created",
-        });
-      }
-    });
-  };
 
     updateUser(req, res) {
     const data = req.body;
