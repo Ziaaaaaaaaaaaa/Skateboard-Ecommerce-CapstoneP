@@ -4,35 +4,35 @@
       <form @submit.prevent="register">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Full name</label>
-            <input type="firstname" v-model="payload.firstName" class="form-control">
+            <input type="firstname" v-model="userdata.firstName" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Last name</label>
-            <input type="lastname" v-model="payload.lastName" class="form-control">
+            <input type="lastname" v-model="userdata.lastName" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Gender</label>
-            <input type="gender" v-model="payload.gender" class="form-control">
+            <input type="gender" v-model="userdata.gender" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">DOB</label>
-            <input type="dob" v-model="payload.userDOB" class="form-control">
+            <input type="dob" v-model="userdata.userDOB" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">User Role</label>
-            <input type="userRole" v-model="payload.userRole" class="form-control">
+            <input type="userRole" v-model="userdata.userRole" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" v-model="payload.emailAdd" class="form-control">
+            <input type="email" v-model="userdata.emailAdd" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" v-model="payload.userPass" class="form-control">
+            <input type="password" v-model="userdata.userPass" class="form-control">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Profile Pic</label>
-            <input type="profilepic" v-model="payload.profileUrl" class="form-control">
+            <input type="profilepic" v-model="userdata.profileUrl" class="form-control">
           </div>
           <div class="d-flex justify-content-center">
 
@@ -48,7 +48,7 @@ const {cookies} = useCookies()
   export default {
       data() {
           return {
-              payload: {
+            userdata: {
                   firstName: "",
                   lastName: "",
                   gender: "",
@@ -67,8 +67,8 @@ const {cookies} = useCookies()
       },
       methods: {
           register() {
-              this.$store.dispatch('register', this.payload)
-              console.log(this.payload);
+              this.$store.dispatch('addUser', this.userdata)
+              console.log(this.userdata);
           }
       },
       mounted() {

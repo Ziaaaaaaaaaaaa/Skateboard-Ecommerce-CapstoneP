@@ -60,10 +60,18 @@ export default createStore({
       state.products = data
     },
     setAddUser(state, data){
-      state.addUser = data
+      state.users = data
     },
     setDeleteUser(state, data){
       state.users = data
+    },
+    setEditUser(state, editUserUpdate){
+      const findId = state.users.findIndex(
+        (user)=>user.userID === editUserUpdate.userID
+      );
+      if (findId !== 1) {
+        state.users[findId] = editUserUpdate
+      }
     },
     setMsg(state,msg){
       state.msg = msg;
@@ -120,8 +128,8 @@ export default createStore({
     },  
     async createUser({commit}, userdata) {
       try {
-        const response = await axios.post(`${url}user`, userdata)
-      commit('setAddUser', response.data)
+        const response = await axios.post(`${url}register`, userdata)
+        commit('setAddUser', response.data)
       console.log("success");
       } catch (e) {
         console.log('Error adding user');
@@ -135,29 +143,29 @@ export default createStore({
         context.commit("setMsg", "An error occurred.");
       }
     },
-    async register(context, payload) {
-      try {
-        const { msg } = (await axios.post(`${url}register`, payload)).data;
-        if (msg) {
-          sweet({
-            title: "Registration",
-            text: msg,
-            icon: "success",
-            timer: 4000,
-          });
-          context.dispatch("fetchUsers");
-        } else {
-          sweet({
-            title: "Error",
-            text: msg,
-            icon: "error",
-            timer: 4000
-          });
-        }
-      } catch (e) {
-        context.commit("setMsg", "An error has occured");
-      }
-    },
+    // async register(context, payload) {
+    //   try {
+    //     const { msg } = (await axios.post(`${url}register`, payload)).data;
+    //     if (msg) {
+    //       sweet({
+    //         title: "Registration",
+    //         text: msg,
+    //         icon: "success",
+    //         timer: 4000,
+    //       });
+    //       context.dispatch("fetchUsers");
+    //     } else {
+    //       sweet({
+    //         title: "Error",
+    //         text: msg,
+    //         icon: "error",
+    //         timer: 4000
+    //       });
+    //     }
+    //   } catch (e) {
+    //     context.commit("setMsg", "An error has occured");
+    //   }
+    // },
     async login(context, payload) {
       try {
         const { msg, token, result } = (
@@ -187,9 +195,9 @@ export default createStore({
         console.log(e);
       }
     },
-    async addUser(context, payload){
+    async addUser(context, userdata){
       try{
-        const { msg } = (await axios.post(`${dataUrl}register`, payload)).data;
+        const { msg } = (await axios.post(`${dataUrl}register`, userdata)).data;
         if (msg) {
           sweetAlert({
             title: "Registration",
@@ -225,6 +233,17 @@ export default createStore({
         context.commit("SortPrice", data.results);
       } catch (e) {
         context.commit("setMsg", "An Error has occured")
+      }
+    },
+    async ConfimEditUser(context, dispatch, {userID, ...updatedFields}) {
+      try {
+        const editUserUpdate = {userID, ...updatedFields}
+        const res = await axios.patch(`${url}user/${editUserUpdate.userID}`, editUserUpdate);
+        context.commit("setUsers", res.data.results);
+        dispatch('fetchUsers')
+        console.log(res.data.results);
+      } catch (e) {
+        console.log(e);
       }
     },
     },

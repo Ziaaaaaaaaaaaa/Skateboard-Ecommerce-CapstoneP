@@ -48,7 +48,8 @@
   },
   methods:{
           addForm(){
-            this.$store.dispatch('addUser', this.userdata)
+            this.$store.dispatch('createUser', this.userdata)
+            console.log(this.userdata);
           }
         }
     }

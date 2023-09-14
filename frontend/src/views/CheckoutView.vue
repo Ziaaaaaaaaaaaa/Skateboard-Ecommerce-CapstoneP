@@ -7,6 +7,7 @@
                 <h1>{{ prod.key.prodName }}</h1>
                 <img :src="prod.key.prodUrl" style="width: 10rem" alt="">
             </div>
+            <button class="btn btn-dark" @click="buy">Buy now</button>
         </div>
         <div v-else>
             <h1>Cart is empty</h1>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import sweet from 'sweetalert'
     export default {
         computed: {
             cart() {
@@ -25,6 +27,19 @@
             // Test() {
             //     console.log(this.cart);
             // }
+            buy(){
+                sweetAlert({
+                title: "Checkout",
+                text: 'Orders Complete',
+                icon: "success",
+                timer: 3000,
+          });
+
+          localStorage.removeItem('cart')
+          setTimeout(()=>{
+            location.reload()
+          }, 2000)
+            }
         }
         
     }
