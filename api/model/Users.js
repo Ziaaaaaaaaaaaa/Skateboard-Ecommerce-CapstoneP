@@ -133,11 +133,12 @@ class Users{
         SET ?
         WHERE userID = ?
         `;
-    db.query(query, [req.body, req.params.id], (err) => {
+    db.query(query, [req.body, req.params.id], (err, result) => {
       if (err) throw err;
-      res.json({
+      return res.json({
         status: res.statusCode,
         msg: "successful update.",
+        result
       });
     });
   }
