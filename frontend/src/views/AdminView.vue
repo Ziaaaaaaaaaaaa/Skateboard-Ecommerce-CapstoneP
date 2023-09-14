@@ -56,8 +56,10 @@
                 <td>{{ item.userID }}</td>
                 <td>{{ item.firstName }}</td>
                 <td>{{ item.lastName }}</td>
-                <td>{{ item.emailAdd }}</td>
+                <td>{{ item.gender }}</td>
+                <td>{{ item.userDOB }}</td>
                 <td>{{ item.userRole }}</td>
+                <td>{{ item.emailAdd }}</td>
                 <td><img :src="item.profileUrl" :alt="item.firstName" style="max-width: 100px;"></td>
                 <td><button @click="editUser(item)" class="btn btn-outline-light">Edit</button></td>
                 <td><button @click="deleteUser(item.userID)" class="btn btn-outline-light">Delete</button></td>

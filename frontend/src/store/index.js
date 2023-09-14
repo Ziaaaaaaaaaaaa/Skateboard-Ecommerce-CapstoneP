@@ -120,11 +120,11 @@ export default createStore({
     },  
     async addUser({commit}, userdata) {
       try {
-        const response = await axios.post(`${url}user`, userdata)
+        const response = await axios.post(`${url}users`, userdata)
       commit('setAddUser', response.data)
       console.log("success");
       } catch (e) {
-        console.log('Error adding product');
+        console.log('Error adding user');
     }
     },
     async deleteUser(context, userID) {

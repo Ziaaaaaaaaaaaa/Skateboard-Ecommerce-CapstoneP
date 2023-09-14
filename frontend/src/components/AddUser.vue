@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button type="button" class="btn  btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">Add</button>
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">Add</button>
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -10,13 +10,13 @@
       </div>
       <div class="modal-body">
         <form @submit.prevent="addForm" class="d-flex flex-column gap-5">
-            <input type="text" class="text-black" v-model="userdata.userID" placeholder="name" name="" id="" required>
-            <input type="text" class="text-black" v-model="userdata.firstName" placeholder="Product Description" name="" id="" required>
-            <input type="text" class="text-black" v-model="userdata.lastName" placeholder="category" name="" id="" required>
-            <input type="text" class="text-black" v-model="userdata.gender" placeholder="Quantity" name="" id="" required>
-            <input type="text" class="text-black" v-model="userdata.userDOB" placeholder="price" name="" id="">
-            <input type="text" class="text-black" v-model="userdata.emailAdd" placeholder="image" name="" id="">
-            <input type="text" class="text-black" v-model="userdata.userPass" placeholder="image" name="" id="">
+            <input type="text" class="text-black" v-model="userdata.firstName" placeholder="first name" name="" id="" required>
+            <input type="text" class="text-black" v-model="userdata.lastName" placeholder="last name" name="" id="" required>
+            <input type="text" class="text-black" v-model="userdata.gender" placeholder="gender" name="" id="" required>
+            <input type="text" class="text-black" v-model="userdata.userDOB" placeholder="DOB" name="" id="">
+            <input type="text" class="text-black" v-model="userdata.userRole" placeholder="Role" name="" id="">
+            <input type="text" class="text-black" v-model="userdata.emailAdd" placeholder="email address" name="" id="">
+            <input type="text" class="text-black" v-model="userdata.userPass" placeholder="password" name="" id="">
             <input type="text" class="text-black" v-model="userdata.profileUrl" placeholder="image" name="" id="">
             <button type="submit" class="btn btn-dark">Add</button>
            </form>
@@ -39,6 +39,7 @@
             lastName: "",
             gender: "",
             userDOB: "",
+            userRole: "",
             emailAdd: "",
             userPass: "",
             profileUrl: "",
