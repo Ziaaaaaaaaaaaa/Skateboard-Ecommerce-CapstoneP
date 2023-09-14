@@ -118,7 +118,7 @@ export default createStore({
       location.reload()
       context.dispatch('setProducts')
     },  
-    async addUser({commit}, userdata) {
+    async createUser({commit}, userdata) {
       try {
         const response = await axios.post(`${url}user`, userdata)
       commit('setAddUser', response.data)

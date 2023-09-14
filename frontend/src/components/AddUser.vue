@@ -34,7 +34,6 @@
         data(){
     return{
         userdata:{
-            userID: "",
             firstName: "",
             lastName: "",
             gender: "",
