@@ -275,13 +275,13 @@ export default {
       edituser.isEditUser = true;
       
     },
-    async saveUser(edituser) {
+    saveUser(edituser) {
   try {
-    const { isEditUser, ...update } = edituser;
-    await this.$store.dispatch('ConfirmEditUser', ...update);
+    // const { isEditUser, ...update } = edituser;
+    this.$store.dispatch("ConfirmEditUser", edituser);
+    console.log(edituser);
     edituser.isEditUser = false;
   } catch (error) {
-    // console.log(edituser.userID);
     console.error(error);
   }
 },

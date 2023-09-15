@@ -36,7 +36,7 @@ nav {
 }
 
 nav a {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
 }
 

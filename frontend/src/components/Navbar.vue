@@ -7,26 +7,26 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-                <li class="nav-item px-2">
+              <ul class="navbar-nav d-flex align-items-center m-auto mb-2 mb-lg-0">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/">Home</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/about">About us</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/products">Products</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/contact">Contact us</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/signup">Signup</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/admin">Admin</router-link>
                 </li>
-                <li class="nav-item px-2">
+                <li class="nav-item px-4">
                   <router-link class="text" to="/login"><i class="bi bi-person-circle"></i></router-link>
                 </li>
                 <li class="nav-item px-2">
@@ -67,7 +67,45 @@ const {cookies} = useCookies();
 
 <style scoped>
 nav {
-    background: #3a393989;
-    z-index: 99999;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.317); /* For browsers that do not support gradients */
+  background-image: linear-gradient(180deg, rgba(50, 50, 50, 0.678), rgb(237, 237, 237));  z-index: 99999;
   }
+
+  .bi{
+    color: black;
+    width: 4rem;
+  }
+
+  .navbar-nav li:after,
+  .navbar-nav li:before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  display: block;
+  height: 1px;
+  transition: all 0.3s ease;
+  margin-top: 2px;
+}
+
+.navbar-nav li:after {
+  bottom: 25%;
+}
+
+.navbar-nav li:before {
+  top: 25%;
+}
+
+.navbar-nav li:hover::after {
+  width: 5%;
+  height: 1px;
+  bottom: 25%;
+  background-color: #fff;
+}
+.navbar-nav li:hover::before {
+  width: 5%;
+  height: 1px;
+  top: 25%;
+  background-color: #fff;
+}
 </style>
