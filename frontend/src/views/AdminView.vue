@@ -199,6 +199,7 @@
                   <button @click="editUser(edituser)" class="btn btn-outline-light">
                     Edit
                   </button>
+                  <!-- <router-link :to="'' + edituser.userID">Test</router-link> -->
                 </td>
               </template>
 
@@ -274,14 +275,15 @@ export default {
       
     },
     async saveUser(edituser) {
-      try {
-        const { isEditUser, ...update } = edituser
-        await this.$store.dispatch('ConfimEditUser', update)
-        edituser.isEditUser = false;
-      } catch (error) {
-        console.error(error);
-      }
-    },
+  try {
+    const { isEditUser, ...update } = edituser;
+    await this.$store.dispatch('ConfirmEditUser', ...update);
+    edituser.isEditUser = false;
+  } catch (error) {
+    // console.log(edituser.userID);
+    console.error(error);
+  }
+},
     cancel(edituser) {
       edituser.isEditUser = false
     },

@@ -235,13 +235,13 @@ export default createStore({
         context.commit("setMsg", "An Error has occured")
       }
     },
-    async ConfimEditUser(context, dispatch, {userID, ...updatedFields}) {
+    async ConfirmEditUser(context, dispatch, {userID: userID, updatedFields: {...updatedFields}}) {
       try {
         const editUserUpdate = {userID, ...updatedFields}
         const res = await axios.patch(`${url}user/${editUserUpdate.userID}`, editUserUpdate);
-        context.commit("setUsers", res.data.results);
+        context.commit("setUsers", res.data.result);
         dispatch('fetchUsers')
-        console.log(res.data.results);
+        console.log(res.data.result);
       } catch (e) {
         console.log(e);
       }
