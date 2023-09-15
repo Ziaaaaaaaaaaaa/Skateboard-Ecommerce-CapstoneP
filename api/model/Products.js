@@ -169,7 +169,7 @@ fetchProducts(req, res){
       }
      })
   }
-  trucksSkateboards(req, res){
+  showTrucks(req, res){
     const query = 
     `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
      FROM Products
