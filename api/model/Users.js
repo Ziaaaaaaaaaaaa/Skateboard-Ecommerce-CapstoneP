@@ -125,7 +125,7 @@ class Users{
 
     updateUser(req, res) {
     const data = req.body;
-    const userID = data.userID
+    
     if (data.userPass) {
       data.userPass = hashSync(data.userPass, 15);
     }
@@ -134,8 +134,9 @@ class Users{
         SET ?
         WHERE userID = ?
         `;
-    db.query(query, [data, userID], (err, result) => {
+    db.query(query, [data], (err, result) => {
       if (err) throw err;
+      console.log(userID);
       return res.json({
         status: res.statusCode,
         msg: "successful update.",
