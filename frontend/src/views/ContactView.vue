@@ -1,14 +1,15 @@
 <template>
-    <div>
-        <div class="heading">
-            <h1 class="heading-text text-white">Contact Page</h1>
-          </div>       
+    <div>   
+      <center>
+        <h1 class="title">Contact Page</h1>
+  </center>  
            <div class="container">
         <div class="heading-1">
 
                 <h1 class=" text text-white">Contact us</h1>
             </div>
-            <form>
+            <form 
+            action="https://formspree.io/f/moqzbakn">
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
@@ -53,7 +54,7 @@
     background-color: rgb(52, 52, 52);
     width: 50%;
     position: relative;
-    bottom: 20rem;
+    bottom: 15rem;
     border-radius: 5%;
     padding-bottom: 4rem;
 }
@@ -110,6 +111,15 @@ p{
     font-size: 7rem;
   }
 
+  .title{
+    font-size: 4rem;
+    border-radius: 20px;
+    background-color: rgba(24, 24, 24, 0.58);
+    position: relative;
+    z-index: 1;
+    bottom: 26rem;
+    width: 50%;
+  }
 
 
 </style>

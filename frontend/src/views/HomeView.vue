@@ -1,5 +1,8 @@
 <template>
-  <div class="home h-100">    
+  <div class="home h-100">   
+    <center>
+      <h1 class="title">Home Page</h1>
+</center> 
         <div class="custom-container container">
           <h1 class="text-center  text-uppercase mb-5 pt-5">Featured Products</h1>
           <div class="row" v-if="featuredProds">
@@ -71,5 +74,15 @@ mounted() {
 }
   .features{
     margin-bottom: 10rem;
+    }
+
+    .title{
+      font-size: 4rem;
+      border-radius: 20px;
+      background-color: rgba(24, 24, 24, 0.58);
+      position: relative;
+      z-index: 1;
+      bottom: 26rem;
+      width: 50%;
     }
 </style>

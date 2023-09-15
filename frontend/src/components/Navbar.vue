@@ -2,7 +2,7 @@
        <div>
         <nav class="navbar navbar-expand-lg position-fixed w-100" style="z-index: 99999;">
           <div class="container-fluid pt-4 pb-4">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand text-white text-uppercase" href="#">Skate Drop & Roll</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,38 +74,7 @@ nav {
 
   .bi{
     color: black;
-    width: 4rem;
   }
 
-  .navbar-nav li:after,
-  .navbar-nav li:before {
-  content: "";
-  position: absolute;
-  width: 0%;
-  display: block;
-  height: 1px;
-  transition: all 0.3s ease;
-  margin-top: 2px;
-}
 
-.navbar-nav li:after {
-  bottom: 25%;
-}
-
-.navbar-nav li:before {
-  top: 25%;
-}
-
-.navbar-nav li:hover::after {
-  width: 5%;
-  height: 1px;
-  bottom: 25%;
-  background-color: #fff;
-}
-.navbar-nav li:hover::before {
-  width: 5%;
-  height: 1px;
-  top: 25%;
-  background-color: #fff;
-}
 </style>

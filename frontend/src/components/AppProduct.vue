@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div>
         <button type="button" class="btn  btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Add</button>
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -53,26 +53,3 @@
 </style>
 
 
-
-
-
-
-
-
- -->
-
- <template>
-  <div>
- 
-  </div>
- </template>
- 
- <script>
-  export default {
-    
-  }
- </script>
- 
- <style scoped>
- 
- </style>

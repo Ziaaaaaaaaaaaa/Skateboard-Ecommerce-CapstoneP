@@ -1,5 +1,8 @@
 <template>
   <div class="admin">
+    <center>
+      <h1 class="title">Admin</h1>
+</center>
     <div class="container">
       <h1 class="admin-heading">Admin</h1>
       <h2 class="section-heading">Products</h2>
@@ -205,7 +208,7 @@
 
               <template v-if="!edituser.isEditUser">
                 <td>
-                  <button @click="editUser(edituser)" class="btn btn-outline-light">
+                  <button @click="deleteUser(edituser.userID)" class="btn btn-outline-light">
                     Delete
                   </button>
                 </td>
@@ -304,4 +307,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.title{
+  font-size: 4rem;
+  border-radius: 20px;
+  background-color: rgba(24, 24, 24, 0.58);
+  position: relative;
+  z-index: 1;
+  bottom: 26rem;
+  width: 50%;
+}
+</style>

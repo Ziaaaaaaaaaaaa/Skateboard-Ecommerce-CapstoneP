@@ -1,5 +1,8 @@
 <template>
     <div class="custom-container container h-100 pt-5 pb-5">
+        <center>
+            <h1 class="title">Login</h1>
+      </center>
         <h1 class="form-heading">Login</h1>
         <form @submit.prevent="login">
             <div class="mb-3">
@@ -64,5 +67,13 @@ const {cookies} = useCookies()
     max-width: 40%;
 }
 
-
+.title{
+    font-size: 4rem;
+    border-radius: 20px;
+    background-color: rgba(24, 24, 24, 0.58);
+    position: relative;
+    z-index: 1;
+    bottom: 26rem;
+    width: 50%;
+  }
 </style>

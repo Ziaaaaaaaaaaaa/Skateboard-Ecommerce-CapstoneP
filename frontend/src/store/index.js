@@ -99,7 +99,7 @@ export default createStore({
     async fetchProduct({commit}, prodID){
       try {
         const response = await axios.get(`${url}product/${prodID}`)
-        commit('setSelectedProd', response.data.result[0])
+        commit('setSelectedProd', response.data.result)
       } catch (error) {
         console.error(error);
       }

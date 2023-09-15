@@ -1,10 +1,8 @@
 <template>
   <div class="home">
-    <div class="heading">
-      <div class="d-flex justify-content-center">
-        <h1 class="heading-text text-white">Product Page</h1>
-      </div>
-    </div>
+    <center>
+          <h1 class="title">Products</h1>
+    </center>
     <div class="container">
       <h1 class="text-center text-white text-uppercase mb-5 pt-5">Products</h1>
       <button class="btn btn-outline-light" @click="sortByName">sort Name</button>
@@ -213,27 +211,27 @@ export default {
 .container {
   background-color: rgb(52, 52, 52);
   position: relative;
-  padding-left: 10rem;
   bottom: 10rem;
   border-radius: 50px;
+  padding-bottom: 2rem;
 }
 
 .card {
   background-color: rgb(79, 79, 79);
 }
 
-.heading {
+
+
+.title{
+  font-size: 4rem;
   border-radius: 20px;
   background-color: rgba(24, 24, 24, 0.58);
   position: relative;
   z-index: 1;
   bottom: 26rem;
-  width: 35%;
+  width: 50%;
 }
 
-.heading-text {
-  font-size: 5rem;
-}
 
 .cards {
   display: flex;
