@@ -122,6 +122,7 @@ class Users{
         })
     }
 
+    // This is a comment
 
     updateUser(req, res) {
     const data = req.body;
