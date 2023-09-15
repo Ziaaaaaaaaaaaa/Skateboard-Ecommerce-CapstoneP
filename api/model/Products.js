@@ -111,7 +111,7 @@ fetchProducts(req, res){
     `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
      FROM Products
      WHERE category = 'Skateboard Complete'
-     LIMIT 5`
+     LIMIT 6`
 
      db.query(query, (err, results) =>{
       if(err){
