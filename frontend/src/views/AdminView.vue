@@ -271,6 +271,7 @@ export default {
     },
 
     editUser(edituser) {
+      localStorage.setItem('userID', edituser.userID)
       edituser.isEditUser = true;
       
     },
