@@ -70,6 +70,8 @@
               >
             </div>
           </div>
+        </li>
+        </ul>
       <h2 class="text-white">Trucks</h2>
       <ul class="cards">
         <li class="card" v-for="item in sortedTrucks" :key="item.prodID">
