@@ -169,6 +169,26 @@ fetchProducts(req, res){
       }
      })
   }
+  trucksSkateboards(req, res){
+    const query = 
+    `SELECT prodID, prodName, quantity, prodDesc, category, amount, prodUrl
+     FROM Products
+     WHERE category = 'Trucks'`
+
+     db.query(query, (err, results) =>{
+      if(err){
+        res.json({
+          msg: "Something went wrong",
+          err: err.message
+        })
+      } else{
+        res.json({
+          status: res.statusCode,
+          results
+        })
+      }
+     })
+  }
 
   // Sort by product name
   sortProd(req, res){
