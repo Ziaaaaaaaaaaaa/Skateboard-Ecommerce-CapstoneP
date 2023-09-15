@@ -70,6 +70,30 @@
               >
             </div>
           </div>
+      <h2 class="text-white">Trucks</h2>
+      <ul class="cards">
+        <li class="card" v-for="item in sortedTrucks" :key="item.prodID">
+          <div v-if="sortedTrucks">
+            <div>
+              <img :src="item.prodUrl" class="card-img-top" alt="" />
+              <div class="card-body"></div>
+              <p class="text-white">{{ item.prodName }}</p>
+              <div class="card-content">
+                <p class="text-white">{{ item.category }}</p>
+              </div>
+              <div class="card-content">
+                <p class="text-white">R{{ item.amount }}</p>
+              </div>
+            </div>
+            <div class="card-link-wrapper">
+              <button @click="AddCart(item)" class="btn btn-outline-light">Cart</button>
+              <router-link
+                class="btn btn-outline-light"
+                :to="'/product/' + item.prodID"
+                >View More</router-link
+              >
+            </div>
+          </div>
           <div
             v-else
             class="d-flex justify-content-center align-content-center"
@@ -89,22 +113,7 @@
 <script>
 export default {
 
-  
-  data() {
-    return {
-      payload: {
-        firstName: "",
-        lastName: "",
-        gender: "",
-        userDOB: "",
-        userRole: "",
-        emailAdd: "",
-        userPass: "",
-        profileUrl: "",
-      },
-      sortType: ''
-    };
-  },
+
   methods: {
     AddCart(item) {
       const data = JSON.parse(localStorage.getItem('cart')) || []
@@ -137,6 +146,9 @@ export default {
     decks() {
       return this.$store.state.decks;
     },
+    trucks() {
+      return this.$store.state.trucks;
+    },
     
     sortedProducts(){
       if (this.sortType === 'amount') {
@@ -148,6 +160,17 @@ export default {
     }
 
     return this.decks
+    },
+    sortedTrucks(){
+      if (this.sortType === 'amount') {
+      return [...this.trucks].sort((a, b) => a.amount - b.amount);
+    } else if (this.sortType === 'prodName') {
+      return [...this.trucks].sort((a, b) =>
+        a.prodName.localeCompare(b.prodName)
+      );
+    }
+
+    return this.trucks
     },
     sortedSkateboards(){
       if (this.sortType === 'amount') {
@@ -167,6 +190,7 @@ export default {
     this.$store.dispatch('fetchProduct', this.prodID);
     this.$store.dispatch("fetchSkateboards");
     this.$store.dispatch("fetchDecks");
+    this.$store.dispatch("fetchTrucks");
 
 
   },

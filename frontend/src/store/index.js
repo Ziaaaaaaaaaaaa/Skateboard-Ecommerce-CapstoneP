@@ -17,6 +17,7 @@ export default createStore({
     featuredProds: null,
     skateboards: null,
     decks: null,
+    trucks: null,
     users: null,
     addProduct: null,
     addUser: null,
@@ -46,6 +47,9 @@ export default createStore({
     },
     setDecks(state, data){
       state.decks = data
+    },
+    setTrucks(state, data){
+      state.trucks = data
     },
     setUsers(state, users){
       state.users = users
@@ -111,6 +115,10 @@ export default createStore({
     async fetchDecks({commit}){
       const fetchedDecks = await axios.get(`${url}decks`)
       commit('setDecks', fetchedDecks.data.results)
+    },
+    async fetchTrucks({commit}){
+      const fetchedTrucks = await axios.get(`${url}trucks`)
+      commit('setTrucks', fetchedTrucks.data.results)
     },
     async addProduct({commit}, productdata) {
       try {
@@ -197,8 +205,8 @@ export default createStore({
     },
     async addUser(context, userdata){
       try{
-        const { msg } = (await axios.post(`${dataUrl}register`, userdata)).data;
-        if (msg) {
+        const { msg, data } = await axios.post(`${url}register`, userdata);
+        if (data) {
           sweetAlert({
             title: "Registration",
             text: msg,
